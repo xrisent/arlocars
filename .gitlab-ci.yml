@@ -1,0 +1,12 @@
+stages:
+  - lint
+
+lint:
+  image: node:20
+  stage: lint
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+  only:
+    - merge_requests
