@@ -1,0 +1,16 @@
+.Header {
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+  a {
+    font-family: var(--font-body);
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
+
+  &.scrolled {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+  }
+}

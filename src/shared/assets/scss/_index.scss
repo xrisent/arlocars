@@ -1,0 +1,71 @@
+@use "utils";
+@use "tailwindcss";
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+:root {
+  --font-heading: "Oswald", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --font-base: 16px;
+  --font-sm: 14px;
+  --font-xsm: 12px;
+  --font-lg: 18px;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+  --color-gold: #a27c29;
+  --color-primary: #ee1243;
+  --color-red: #eb4c4c;
+  --color-green: #00b67a;
+  --color-blue: #0061df;
+  --color-cyan: #21c4df;
+  --color-pink: #ff7294;
+  --color-purple: #6231f0;
+  --color-yellow: #ffc107;
+  --color-orange: #f59872;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-dark: #0d0c1b;
+  --color-medium: #7a7575;
+  --color-light: #f5f5f5;
+  --color-primary-rgb: 238, 18, 67;
+  --color-red-rgb: 235, 76, 76;
+  --color-green-rgb: 0, 182, 122;
+  --color-blue-rgb: 0, 97, 223;
+  --color-cyan-rgb: 33, 196, 223;
+  --color-pink-rgb: 255, 114, 148;
+  --color-purple-rgb: 98, 49, 240;
+  --color-yellow-rgb: 253, 192, 64;
+  --color-orange-rgb: 245, 152, 114;
+  --color-white-rgb: 255, 255, 255;
+  --color-black-rgb: 0, 0, 0;
+  --color-dark-rgb: 25, 27, 30;
+  --color-medium-rgb: 141, 141, 141;
+  --color-light-rgb: 242, 242, 242;
+  --border-color: #e8e8e8;
+  --bg-light: #f7f9fc;
+  --bg-primary-light: rgba(var(--color-primary-rgb), 0.05);
+  --bg-dark: var(--color-dark);
+  --bg-dark-shade: #0c122d;
+  --bg-gradient: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --shadow-md: 0 10px 30px -5px rgb(8, 0, 42, 0.08);
+  --shadow-lg: 0 0.5rem 3rem rgba(0, 0, 0, 0.155);
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-xl: 15px;
+  --radius-lg: 20px;
+}

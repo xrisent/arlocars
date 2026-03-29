@@ -1,9 +1,11 @@
-import { HomeDashboard } from "@/widgets/home-dashboard/ui/home-dashboard";
+import { HeroSection } from "@/widgets/hero";
+import { SellCarSection } from "@/widgets/sell-car";
 
 export const HomePage = () => {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-50 p-6">
-      <HomeDashboard />
+    <main>
+      <HeroSection />
+      <SellCarSection />
     </main>
   );
 };
