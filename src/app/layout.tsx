@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-import { AppProviders } from "@/app/providers/app-providers";
+import { AppProviders } from "@/app/providers";
+import { Header } from "@/widgets/header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "../shared/assets/scss/_index.scss";
 
 export const metadata: Metadata = {
   title: "ArloCars",
@@ -25,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="en" className={`h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <Header />
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
