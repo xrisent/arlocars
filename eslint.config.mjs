@@ -17,7 +17,7 @@ const eslintConfig = defineConfig([
       "boundaries/elements": [
         { type: "app", pattern: "src/app/*" },
         { type: "processes", pattern: "src/processes/*" },
-        { type: "pages", pattern: "src/pages/*" },
+        { type: "pages", pattern: "src/views/*" },
         { type: "widgets", pattern: "src/widgets/*" },
         { type: "features", pattern: "src/features/*" },
         { type: "entities", pattern: "src/entities/*" },
