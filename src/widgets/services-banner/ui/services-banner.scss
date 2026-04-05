@@ -1,0 +1,12 @@
+.ServicesBanner {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/video-banner-1.jpg") center/cover no-repeat;
+
+  color: var(--color-white);
+
+  .title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}

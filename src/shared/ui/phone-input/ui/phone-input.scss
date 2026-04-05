@@ -1,0 +1,63 @@
+.CustomPhoneInput {
+  .phone-input-container {
+    width: 100%;
+
+    .react-tel-input {
+      width: 100%;
+
+      .form-control {
+        width: 100%;
+        height: 32px;
+        padding: 6px 10px 6px 48px !important;
+        font-family: GothamSSM, sans-serif;
+        font-weight: 300;
+        border: none;
+        border-radius: 0;
+        outline: none;
+
+        background-color: var(--e-global-color-secondary);
+
+        &:disabled {
+          cursor: default;
+
+          & ~ .flag-dropdown {
+            cursor: default;
+          }
+        }
+      }
+
+      .flag-dropdown {
+        background-color: var(--e-global-color-secondary);
+        border: none;
+
+        &:hover,
+        &.open {
+          background-color: var(--e-global-color-secondary);
+        }
+      }
+    }
+
+    .selected-flag:hover {
+      background-color: var(--e-global-color-secondary);
+    }
+  }
+
+  &.ant-form-item-has-error {
+    .phone-input-container {
+      .react-tel-input {
+        .form-control {
+          border-color: var(--antd-error);
+
+          &:focus {
+            border-color: var(--antd-error);
+          }
+        }
+
+        .flag-dropdown {
+          border-color: var(--antd-error);
+          border-right: 1px solid var(--border-clr);
+        }
+      }
+    }
+  }
+}
