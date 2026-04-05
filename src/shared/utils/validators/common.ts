@@ -6,7 +6,7 @@ export const validatePhoneNumber = (value: string, country: string): boolean => 
   try {
     const phoneNumber = parsePhoneNumberFromString(value, country as CountryCode);
     return phoneNumber ? phoneNumber.isValid() : false;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
