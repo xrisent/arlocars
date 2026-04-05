@@ -7,6 +7,14 @@ import boundaries from "eslint-plugin-boundaries";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+
+  {
+    files: ["**/*.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+
   {
     files: ["src/**/*.{ts,tsx}"],
     plugins: {
@@ -44,10 +52,7 @@ const eslintConfig = defineConfig([
               from: "app",
               allow: ["processes", "pages", "widgets", "features", "entities", "shared"],
             },
-            {
-              from: "processes",
-              allow: ["pages", "widgets", "features", "entities", "shared"],
-            },
+            { from: "processes", allow: ["pages", "widgets", "features", "entities", "shared"] },
             { from: "pages", allow: ["widgets", "features", "entities", "shared"] },
             { from: "widgets", allow: ["features", "entities", "shared"] },
             { from: "features", allow: ["entities", "shared"] },
@@ -58,14 +63,8 @@ const eslintConfig = defineConfig([
       ],
     },
   },
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 
 export default eslintConfig;

@@ -1,20 +1,26 @@
 "use client";
 
-import { Steps } from "antd";
+import { Form, Steps } from "antd";
 import { useState } from "react";
+
+import { CarDetailsForm, PersonalDetailsForm, UploadImageForm } from "@/features/contacts-us";
 
 import "./sell-car.scss";
 
 export const SellCarSection = () => {
   const [current, setCurrent] = useState(0);
+  const [form] = Form.useForm();
 
-  const onChange = (value: number) => {
-    console.log("onChange:", value);
-    setCurrent(value);
+  const onChange = () => {
+    setCurrent((prev) => prev + 1);
+  };
+
+  const onPrevious = () => {
+    setCurrent((prev) => prev - 1);
   };
 
   return (
-    <section className="h-[calc(100vh-108px)] SellCarSection">
+    <section className="SellCarSection py-[100px]">
       <div className="container flex flex-col items-center justify-center h-full gap-[70px]">
         <div className="flex flex-col items-center text-center">
           <p className="text-[15px] text-[var(--color-medium)] small-desc">
@@ -27,7 +33,6 @@ export const SellCarSection = () => {
         <Steps
           className="w-full"
           current={current}
-          onChange={onChange}
           titlePlacement="vertical"
           items={[
             {
@@ -41,6 +46,28 @@ export const SellCarSection = () => {
             },
           ]}
         />
+
+        {current === 0 && (
+          <PersonalDetailsForm form={form} onFinish={onChange} className="w-[60%]" />
+        )}
+        {current === 1 && (
+          <CarDetailsForm
+            form={form}
+            onFinish={onChange}
+            hasPrevious
+            onPrevious={onPrevious}
+            className="w-[60%]"
+          />
+        )}
+        {current === 2 && (
+          <UploadImageForm
+            form={form}
+            onFinish={onChange}
+            hasPrevious
+            onPrevious={onPrevious}
+            className="w-[60%]"
+          />
+        )}
       </div>
     </section>
   );

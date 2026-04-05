@@ -1,0 +1,76 @@
+.CustomInput {
+  label {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 0 !important;
+    font-style: normal !important;
+  }
+
+  .ant-form-item-label {
+    padding: 0;
+  }
+
+  input {
+    color: var(--text-clr-black) !important;
+    font-family: GothamSSM, sans-serif;
+  }
+
+  input,
+  .ant-input-affix-wrapper {
+    margin-top: 2px;
+    padding: 2px 8px;
+    font-weight: 300;
+    font-size: 14px !important;
+    background: var(--e-global-color-secondary);
+    border-radius: 0;
+    border: none;
+    min-height: 32px;
+  }
+
+  .ant-input-affix-wrapper {
+    padding: 0 11px;
+  }
+
+  .ant-input {
+    font-weight: 300 !important;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper {
+    transition: none !important;
+  }
+
+  .ant-input:focus,
+  .ant-input-focused {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper-focused {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .ant-input-affix-wrapper > input.ant-input:focus {
+    box-shadow: none !important;
+  }
+
+  .ant-form-item-label > label.ant-form-item-required::before {
+    display: none;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper {
+    &:hover,
+    &:focus,
+    &-focused {
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      background: var(--e-global-color-secondary) !important;
+    }
+  }
+}

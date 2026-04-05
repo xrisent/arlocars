@@ -28,7 +28,9 @@ export const HeroSection = () => {
           <div key={slide.id}>
             <div
               className="bg-center bg-cover bg-no-repeat h-[100vh] pt-[108px]"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${slide.image})`,
+              }}
             >
               <div className="container flex items-center h-full">
                 <h2
