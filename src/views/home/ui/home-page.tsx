@@ -1,4 +1,5 @@
 import { AboutUsSection } from "@/widgets/about-us";
+import { CarsForSale } from "@/widgets/cars-for-sale";
 import { HeroSection } from "@/widgets/hero";
 import { SellCarSection } from "@/widgets/sell-car";
 import { ServicesBanner } from "@/widgets/services-banner";
@@ -12,6 +13,7 @@ export const HomePage = () => {
       <ServicesBanner />
       <SolutionCards />
       <AboutUsSection />
+      <CarsForSale />
     </main>
   );
 };

@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 import { getCarById, toCarDto } from "@/entities/car";
-import type { CarDto } from "@/entities/car/model/interfaces";
+import type { CarDto } from "@/entities/car";
 import type { ParsedCarCreate, ParsedCarUpdate } from "@/features/car/model/interfaces";
 import { prisma } from "@/shared/api/prisma";
 import {
@@ -37,6 +37,7 @@ export async function createCar(data: ParsedCarCreate): Promise<CarDto> {
 
   const row = await prisma.car.create({
     data: {
+      name: data.name,
       price: data.price,
       year: data.year,
       color: data.color,

@@ -1,2 +1,3 @@
 export type { CarViewProps } from "./car-view";
-export type { CarsTableProps } from "./cars-table";
+export { CarCardView } from "./car-card";
+export { CarsGridView } from "./cars-grid";

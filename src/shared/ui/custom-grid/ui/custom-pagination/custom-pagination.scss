@@ -1,0 +1,20 @@
+.CustomPagination {
+  &__pagination {
+    .ant-pagination-item,
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      margin: 0;
+      border: 1px solid var(--neutral-border);
+      border-radius: 0;
+
+      &-active {
+        border: none;
+        background-color: var(--btn-primary);
+
+        a {
+          color: white !important;
+        }
+      }
+    }
+  }
+}

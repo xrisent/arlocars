@@ -18,6 +18,7 @@ CREATE TABLE "Car" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "price" REAL NOT NULL,
     "description" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "mainPhoto" TEXT NOT NULL,
     "photos" TEXT NOT NULL,
     "year" INTEGER NOT NULL,

@@ -1,7 +1,10 @@
 import type { Prisma } from "@prisma/client";
+import axios from "axios";
 
-import type { CarDto, CarListResponse, CarRowWithCategory } from "@/entities/car/model/interfaces";
+import type { CarDto, CarListResponse, CarRowWithCategory } from "@/entities/car";
+import { ICarRequest } from "@/entities/car";
 import { prisma } from "@/shared/api/prisma";
+import { API_ENDPOINTS } from "@/shared/constants";
 import {
   parseFloatParam,
   parseIntIdList,
@@ -23,6 +26,7 @@ export function toCarDto(row: CarRowWithCategory): CarDto {
   return {
     id: row.id,
     price: row.price,
+    name: row.name,
     description: row.description,
     mainPhoto: row.mainPhoto,
     photos: parsePhotosJson(row.photos),
@@ -53,6 +57,7 @@ function buildWhere(searchParams: URLSearchParams): Prisma.CarWhereInput {
   if (q) {
     parts.push({
       description: { contains: q },
+      name: { contains: q },
     });
   }
 
@@ -93,3 +98,7 @@ export async function getCarById(id: number): Promise<CarDto | null> {
   });
   return row ? toCarDto(row) : null;
 }
+
+export const fetchCars = (params: ICarRequest) => {
+  return axios.get(API_ENDPOINTS.CARS.BASE, { params });
+};

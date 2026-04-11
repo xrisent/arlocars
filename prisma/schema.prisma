@@ -26,6 +26,7 @@ model Car {
   id          Int      @id @default(autoincrement())
   price       Float
   description String
+  name        String
   mainPhoto   String
   photos      String
   year        Int

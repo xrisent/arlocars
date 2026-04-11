@@ -1,7 +1,6 @@
 import type { ParsedCarCreate, ParsedCarUpdate } from "@/features/car/model/interfaces";
 import { HttpError } from "@/shared/lib/http";
 
-
 function num(raw: FormDataEntryValue | null): number | undefined {
   if (raw == null || raw === "") return undefined;
   const s = typeof raw === "string" ? raw : "";
@@ -35,18 +34,28 @@ export function parseCarCreateForm(form: FormData): ParsedCarCreate {
   const description = str(form.get("description"))?.trim();
   const categoryId = int(form.get("categoryId"));
   const mainRaw = form.get("mainPhoto");
+  const name = str(form.get("name"));
   const mainPhoto = mainRaw instanceof File && mainRaw.size > 0 ? mainRaw : null;
 
-  if (price == null || year == null || !color || !description || categoryId == null || !mainPhoto) {
+  if (
+    price == null ||
+    year == null ||
+    !color ||
+    !description ||
+    categoryId == null ||
+    !mainPhoto ||
+    !name
+  ) {
     throw new HttpError(
       400,
-      "Missing required fields: price, year, color, description, categoryId, mainPhoto (file)",
+      "Missing required fields: price, year, color, description, categoryId, mainPhoto (file), name",
     );
   }
 
   const photos = form.getAll("photos").filter((f): f is File => f instanceof File && f.size > 0);
 
   return {
+    name,
     price,
     year,
     color,
@@ -64,8 +73,8 @@ export function parseCarUpdateForm(form: FormData): ParsedCarUpdate {
   const descRaw = str(form.get("description"));
   const categoryId = int(form.get("categoryId"));
   const mainRaw = form.get("mainPhoto");
-  const mainPhoto =
-    mainRaw instanceof File && mainRaw.size > 0 ? mainRaw : undefined;
+  const name = str(form.get("name"));
+  const mainPhoto = mainRaw instanceof File && mainRaw.size > 0 ? mainRaw : undefined;
 
   const photos = form.getAll("photos").filter((f): f is File => f instanceof File && f.size > 0);
   const replacePhotos = bool(form.get("replacePhotos"));
@@ -77,6 +86,7 @@ export function parseCarUpdateForm(form: FormData): ParsedCarUpdate {
     ...(descRaw !== undefined ? { description: descRaw.trim() } : {}),
     ...(categoryId != null ? { categoryId } : {}),
     ...(mainPhoto != null ? { mainPhoto } : {}),
+    ...(name !== undefined ? { name } : {}),
     photos,
     replacePhotos,
   };

@@ -4,6 +4,7 @@ export type ParsedCarCreate = {
   color: string;
   description: string;
   categoryId: number;
+  name: string;
   mainPhoto: File;
   photos: File[];
 };
@@ -11,6 +12,7 @@ export type ParsedCarCreate = {
 export type ParsedCarUpdate = {
   price?: number;
   year?: number;
+  name?: string;
   color?: string;
   description?: string;
   categoryId?: number;

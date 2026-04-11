@@ -2,6 +2,7 @@ export type Car = {
   id: number;
   price: number;
   description: string;
+  name: string;
   mainPhoto: string;
   photos: string;
   year: number;
@@ -14,6 +15,7 @@ export type CarDto = {
   id: number;
   price: number;
   description: string;
+  name: string;
   mainPhoto: string;
   photos: string[];
   year: number;
@@ -36,6 +38,7 @@ export type CarRowWithCategory = {
   price: number;
   description: string;
   mainPhoto: string;
+  name: string;
   photos: string;
   year: number;
   color: string;
@@ -43,3 +46,15 @@ export type CarRowWithCategory = {
   createdAt: Date;
   category: { id: number; name: string };
 };
+
+export interface ICarRequest {
+  priceMin?: number;
+  priceMax?: number;
+  yearMin?: number;
+  yearMax?: number;
+  colors?: string[];
+  categoryIds?: number[];
+  q?: string;
+  page?: number;
+  page_size?: number;
+}
