@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { AppProviders } from "@/app/providers";
+import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
 
 import "../shared/assets/scss/_index.scss";
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header />
         <AppProviders>{children}</AppProviders>
+        <Footer />
       </body>
     </html>
   );
