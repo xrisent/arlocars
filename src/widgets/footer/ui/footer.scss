@@ -1,0 +1,9 @@
+.Footer {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/footer-bg-2.webp") center/cover no-repeat;
+
+  .title {
+    font-family: var(--font-heading);
+  }
+}

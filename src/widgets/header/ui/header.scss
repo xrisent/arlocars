@@ -14,3 +14,11 @@
     backdrop-filter: blur(8px);
   }
 }
+
+.go-top {
+  background-color: var(--color-gold);
+
+  &.scrolled {
+    opacity: 100;
+  }
+}
