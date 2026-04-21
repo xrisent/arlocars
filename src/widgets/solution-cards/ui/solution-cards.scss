@@ -66,3 +66,35 @@
     }
   }
 }
+
+@media (max-width: 1250px) {
+  .SolutionCards {
+    .cards {
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .card {
+      max-width: 60%;
+      min-height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .SolutionCards {
+    .card {
+      max-width: 80%;
+    }
+  }
+}
+@media (max-width: 650px) {
+  .SolutionCards {
+    .card {
+      max-width: 95%;
+    }
+  }
+}

@@ -10,3 +10,35 @@
     font-weight: 700;
   }
 }
+
+@media (max-width: 950px) {
+  .ServicesBanner {
+    .title {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .ServicesBanner {
+    .content {
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .ServicesBanner {
+    .container,
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content {
+      width: 80%;
+    }
+  }
+}

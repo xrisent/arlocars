@@ -7,3 +7,20 @@
     font-family: var(--font-heading);
   }
 }
+@media (max-width: 1050px) {
+  .Footer {
+    height: auto;
+    .footer-items {
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .footer-item {
+      align-items: center;
+      text-align: center;
+    } 
+    .footer-gap{
+      gap: 20px;
+    }
+  }
+}

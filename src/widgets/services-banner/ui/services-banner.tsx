@@ -6,7 +6,7 @@ export const ServicesBanner = () => {
   return (
     <section className="ServicesBanner py-[60px]">
       <div className="container">
-        <div className="flex flex-col w-[42%] gap-[20px]">
+        <div className="content flex flex-col w-[42%] gap-[20px]">
           <p className="text-[15px]">Automotive Solutions</p>
           <h2 className="text-[42px] title">
             We take care of your motoring needs – you just Drive!

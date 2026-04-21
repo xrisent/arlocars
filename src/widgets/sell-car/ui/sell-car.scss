@@ -4,3 +4,11 @@
     font-family: var(--font-heading);
   }
 }
+
+@media (max-width: 750px) {
+  .SellCarSection {
+    &-form {
+      width: 100%;
+    }
+  }
+}
