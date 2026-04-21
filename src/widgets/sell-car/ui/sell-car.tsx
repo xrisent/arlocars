@@ -48,7 +48,11 @@ export const SellCarSection = () => {
         />
 
         {current === 0 && (
-          <PersonalDetailsForm form={form} onFinish={onChange} className="w-[60%]" />
+          <PersonalDetailsForm
+            form={form}
+            onFinish={onChange}
+            className="w-[60%] SellCarSection-form"
+          />
         )}
         {current === 1 && (
           <CarDetailsForm
@@ -56,7 +60,7 @@ export const SellCarSection = () => {
             onFinish={onChange}
             hasPrevious
             onPrevious={onPrevious}
-            className="w-[60%]"
+            className="w-[60%] SellCarSection-form"
           />
         )}
         {current === 2 && (
@@ -65,7 +69,7 @@ export const SellCarSection = () => {
             onFinish={onChange}
             hasPrevious
             onPrevious={onPrevious}
-            className="w-[60%]"
+            className="w-[60%] SellCarSection-form"
           />
         )}
       </div>

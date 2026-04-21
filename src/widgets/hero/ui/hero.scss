@@ -2,4 +2,35 @@
   .title {
     font-family: var(--font-heading);
   }
+
+  .ant-carousel,
+  .slick-slider,
+  .slick-list,
+  .slick-track,
+  .slick-slide,
+  .slick-slide > div {
+    height: 100%;
+  }
+
+  .slick-slide > div {
+    & > div {
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .HeroSection {
+
+    height: 60vh;
+
+    .container {
+      align-items: start;
+      padding-top: 40px;
+    }
+
+    .title {
+      font-size: 40px;
+    }
+  }
 }

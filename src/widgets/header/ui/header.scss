@@ -13,6 +13,32 @@
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
   }
+
+  &-burger {
+    display: none;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-gold);
+    position: relative;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background-color: var(--color-gold);
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+
+    &::after {
+      top: -8px;
+    }
+    &::before {
+      bottom: -8px;
+    }
+  }
 }
 
 .go-top {
@@ -20,5 +46,76 @@
 
   &.scrolled {
     opacity: 100;
+  }
+}
+
+.drawer-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #000;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-close {
+  color: var(--color-gold);
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.drawer-link {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  font-family: var(--font-body);
+
+  &:hover {
+    color: var(--color-gold);
+    padding-left: 8px;
+  }
+}
+
+.drawer-btn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1150px) {
+  .Header {
+    &-nav,
+    &-btn {
+      display: none;
+    }
+
+    &-burger {
+      display: flex;
+    }
   }
 }

@@ -27,7 +27,7 @@ export const HeroSection = () => {
         {slides.map((slide) => (
           <div key={slide.id}>
             <div
-              className="bg-center bg-cover bg-no-repeat h-[100vh] pt-[108px]"
+              className="bg-center bg-cover bg-no-repeat h-[100%] pt-[108px]"
               style={{
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${slide.image})`,
               }}

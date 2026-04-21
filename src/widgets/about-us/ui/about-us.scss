@@ -11,3 +11,15 @@
     font-weight: 400;
   }
 }
+
+@media (max-width: 1250px) {
+  .AboutUsSection {
+    .container {
+      flex-direction: column;
+    }
+
+    .text{
+      width: 90%;
+    }
+  }
+}

@@ -29,7 +29,7 @@ export const SolutionCards = () => {
           Trusted car care <span>solutions</span>
         </h2>
 
-        <div className="flex items-center justify-between pt-[50px]">
+        <div className="cards flex items-center justify-between pt-[50px]">
           {cards.map((card) => (
             <div
               className="card flex flex-col items-center text-center gap-[14px]"

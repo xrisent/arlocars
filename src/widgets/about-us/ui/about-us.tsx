@@ -7,7 +7,7 @@ export const AboutUsSection = () => {
     <section className="AboutUsSection">
       <div className="container flex items-center justify-between pb-[60px] pt-[100px]">
         <Image src="/about-us.webp" width={746} height={420} alt="about-us" />
-        <div className="flex flex-col w-[42%]">
+        <div className="text flex flex-col w-[42%]">
           <h2 className="title">About Us</h2>
           <p className="desc">
             At Arlo Cars, we bring over 15 years of automotive experience, rooted in a strong

@@ -5,10 +5,11 @@ import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
 
 import "../shared/assets/scss/_index.scss";
+import "../shared/assets/scss/_media.scss";
 
 export const metadata: Metadata = {
   title: "ArloCars",
-  description: "ArloCars admin panel",
+  description: "ArloCars",
 };
 
 export default function RootLayout({

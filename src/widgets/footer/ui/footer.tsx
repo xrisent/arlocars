@@ -25,8 +25,8 @@ export const Footer = () => {
   return (
     <footer className="h-[70vh] Footer text-white flex flex-col justify-between items-center pt-[100px]">
       <div className="container pb-[30px]">
-        <div className="flex w-full justify-between items-stretch gap-x-30">
-          <div className="flex flex-col justify-between w-full">
+        <div className="footer-items flex w-full justify-between items-stretch gap-x-30">
+          <div className="footer-item footer-gap flex flex-col justify-between w-full">
             <Logo />
             <p className="font-normal text-base leading-[1.8]">
               Trusted car experts in Dubai for car selling, consignment, financing, and
@@ -48,7 +48,7 @@ export const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col w-full">
+          <div className="footer-item flex flex-col w-full">
             <h2 className="text-[24px] title mb-[25px]">Useful Links</h2>
             <nav className="flex gap-[14px] flex-col">
               {links.map((item) => (
@@ -62,9 +62,9 @@ export const Footer = () => {
               ))}
             </nav>
           </div>
-          <div className="flex flex-col w-full justify-between">
+          <div className="footer-item flex flex-col w-full justify-between">
             <h2 className="text-[24px] title mb-[25px]">Contact Us</h2>
-            <ul className="flex flex-col h-full justify-between">
+            <ul className="flex flex-col h-full justify-between footer-gap">
               <li>
                 <EnvironmentOutlined className="mr-2" />
                 Arlo Cars, Dubai, UAE
