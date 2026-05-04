@@ -69,23 +69,29 @@ export const CarsForSale = () => {
   const cars = data?.items || [];
 
   return (
-    <CarsGridView
-      items={cars}
-      pagination={{
-        pageSize: debouncedPageSize
-          ? isNaN(parseInt(debouncedPageSize))
-            ? 10
-            : parseInt(debouncedPageSize)
-          : 10,
-        total: data?.total || 0,
-        current: debouncedPage ? (isNaN(parseInt(debouncedPage)) ? 1 : parseInt(debouncedPage)) : 1,
-        onChange: (pageChange, pageSizeChange) => {
-          setPage(pageChange.toString());
-          setPageSize(pageSizeChange?.toString() || "");
-        },
-      }}
-      loading={isLoading}
-      className="pt-100"
-    />
+    <div className="container">
+      <CarsGridView
+        items={cars}
+        pagination={{
+          pageSize: debouncedPageSize
+            ? isNaN(parseInt(debouncedPageSize))
+              ? 10
+              : parseInt(debouncedPageSize)
+            : 10,
+          total: data?.total || 0,
+          current: debouncedPage
+            ? isNaN(parseInt(debouncedPage))
+              ? 1
+              : parseInt(debouncedPage)
+            : 1,
+          onChange: (pageChange, pageSizeChange) => {
+            setPage(pageChange.toString());
+            setPageSize(pageSizeChange?.toString() || "");
+          },
+        }}
+        loading={isLoading}
+        className="pt-[160px] pb-[40px]"
+      />
+    </div>
   );
 };

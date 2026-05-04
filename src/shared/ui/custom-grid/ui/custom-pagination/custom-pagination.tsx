@@ -8,12 +8,28 @@ export const CustomPagination: React.FC<TablePaginationConfig> = ({
   total = 0,
   onChange,
 }) => {
+  const totalPages = Math.ceil(total / pageSize) || 1;
+
+  const hasPrev = (current || 1) > 1;
+  const hasNext = (current || 1) < totalPages;
+
+  const handlePageChange = (page: number, pageSize: number) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    if (onChange) {
+      onChange(page, pageSize);
+    }
+  };
+
   const itemRender: PaginationProps["itemRender"] = (_, type, originalElement) => {
     if (type === "prev") {
-      return "<";
+      return hasPrev ? "<" : null;
     }
     if (type === "next") {
-      return ">";
+      return hasNext ? ">" : null;
     }
     return originalElement;
   };
@@ -28,7 +44,7 @@ export const CustomPagination: React.FC<TablePaginationConfig> = ({
         showSizeChanger={false}
         showLessItems
         itemRender={itemRender}
-        onChange={onChange}
+        onChange={handlePageChange}
       />
     </div>
   );

@@ -12,7 +12,7 @@ export const CustomCardGrid = ({
   gridClassName,
   pagination,
   columns = { xs: 12, sm: 8, md: 6, lg: 4, xl: 4 },
-  gutter = [16, 16],
+  gutter = [0, 16],
   skeleton,
 }: CustomCardGridProps) => {
   const childrenArray = Array.isArray(children) ? children : [children];
@@ -37,7 +37,7 @@ export const CustomCardGrid = ({
           ? skeletonItems
           : childrenArray.map((child, index) => (
               <Col key={index} {...columns}>
-                {child}
+                <div className="flex justify-center">{child}</div>
               </Col>
             ))}
       </Row>

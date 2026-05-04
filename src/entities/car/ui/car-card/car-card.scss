@@ -1,0 +1,49 @@
+.CarCard {
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.1);
+  }
+
+  &__image-wrapper {
+    overflow: hidden;
+    width: 280px;
+
+    img {
+      transition: transform 0.3s ease-out;
+    }
+  }
+
+  &:hover &__image-wrapper img {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  a {
+    color: inherit;
+    font-size: 20px;
+    font-family: var(--font-heading);
+
+    &:hover {
+      color: var(--e-global-color-primary);
+    }
+  }
+
+  p {
+    font-family: var(--font-heading);
+  }
+
+  button {
+    border-color: var(--border-color);
+    color: var(--e-global-color-primary);
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: var(--e-global-color-primary);
+    }
+  }
+}
