@@ -3,6 +3,7 @@
 import { UpOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { CustomButton, Logo } from "@/shared/ui";
@@ -10,7 +11,7 @@ import { CustomButton, Logo } from "@/shared/ui";
 import "./header.scss";
 
 const links = [
-  { title: "Cars For Sale", path: "" },
+  { title: "Cars For Sale", path: "/cars" },
   { title: "Sell Your Car", path: "" },
   { title: "Finance", path: "" },
   { title: "Automative Solutions", path: "" },
@@ -19,7 +20,12 @@ const links = [
   { title: "Contact", path: "" },
 ];
 
+const SCROLLED = ["/cars", "/sell", "/finance", "/solutions"];
+
 export const Header = () => {
+  const pathname = usePathname();
+  const shouldBeScrolled = !SCROLLED.includes(pathname);
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -46,9 +52,13 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 w-full z-50 py-4 Header ${isScrolled ? "scrolled" : ""}`}>
+      <header
+        className={`fixed top-0 w-full z-50 py-4 Header ${isScrolled ? "scrolled" : ""} ${!shouldBeScrolled ? "blacked" : ""}`}
+      >
         <div className="container flex justify-between items-center">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
 
           <nav className="flex gap-10 Header-nav">
             {links.map((item) => (

@@ -16,7 +16,20 @@ interface CarsGridViewProps {
 
 export const CarsGridView = ({ items, loading, className, pagination }: CarsGridViewProps) => {
   return (
-    <CustomCardGrid data={items} pagination={pagination} loading={loading} className={className}>
+    <CustomCardGrid
+      data={items}
+      pagination={pagination}
+      loading={loading}
+      className={className}
+      columns={{
+        xs: 24,
+        sm: 12,
+        md: 12,
+        lg: 8,
+        xl: 6,
+        xxl: 6,
+      }}
+    >
       {items.map((car) => (
         <CarCardView car={car} key={car.id} />
       ))}

@@ -1,16 +1,24 @@
 .CustomPagination {
   &__pagination {
+    gap: 10px;
+
     .ant-pagination-item,
     .ant-pagination-prev,
     .ant-pagination-next {
       margin: 0;
-      border: 1px solid var(--neutral-border);
-      border-radius: 0;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      &-active {
-        border: none;
-        background-color: var(--btn-primary);
-
+      &-active,
+      &:hover {
+        background-color: var(--e-global-color-primary) !important;
+        color: white !important;
+        border: none !important;
         a {
           color: white !important;
         }
