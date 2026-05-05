@@ -1,0 +1,210 @@
+.FinancePage {
+  &-cta {
+    position: relative;
+    overflow: hidden;
+
+    background: url("/finance/finance-cta-bg.jpg") bottom/cover no-repeat;
+  }
+
+  &-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  &-ctaContent {
+    position: relative;
+    z-index: 2;
+  }
+
+  &-offers,
+  &-why {
+    padding: 100px 0;
+  }
+
+  &-intro {
+    padding-top: 150px;
+  }
+
+  &-intro article {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+      font-size: 42px;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--e-global-color-text);
+      line-height: 1.8;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &-offers {
+    background: #fff;
+
+    h2 {
+      font-size: 42px;
+      font-family: var(--font-heading);
+      text-align: center;
+      margin-bottom: 50px;
+    }
+  }
+
+  &-offersGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  &-offer {
+    display: flex;
+    gap: 14px;
+    border-radius: 12px;
+    padding: 25px;
+
+    .anticon {
+      color: var(--color-gold);
+      margin-top: 4px;
+      font-size: 18px;
+    }
+
+    h3 {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--e-global-color-text);
+      line-height: 1.8;
+    }
+  }
+
+  &-whyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    h2 {
+      font-size: 42px;
+      font-family: var(--font-heading);
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: var(--e-global-color-text);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+
+      .anticon {
+        color: var(--color-gold);
+        font-size: 18px;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  &-cta {
+    padding: 60px 0;
+  }
+
+  &-ctaContent {
+    color: var(--color-white);
+
+    article {
+      max-width: 720px;
+    }
+
+    h2 {
+      font-size: 42px;
+      font-family: var(--font-heading);
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .CustomButton-default{
+      padding: 15px 34px;
+      margin-top: 30px;
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .FinancePage {
+    &-offersGrid,
+    &-whyGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .FinancePage {
+    &-intro article h2,
+    &-offers h2,
+    &-whyGrid h2,
+    &-ctaContent h2 {
+      font-size: 34px;
+    }
+
+    &-intro,
+    &-offers,
+    &-why {
+      padding: 70px 0;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .FinancePage {
+    &-intro article h2,
+    &-offers h2,
+    &-whyGrid h2,
+    &-ctaContent h2 {
+      font-size: 30px;
+    }
+
+    &-offer h3 {
+      font-size: 24px;
+    }
+  }
+}

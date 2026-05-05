@@ -12,15 +12,15 @@ import "./header.scss";
 
 const links = [
   { title: "Cars For Sale", path: "/cars" },
-  { title: "Sell Your Car", path: "" },
-  { title: "Finance", path: "" },
+  { title: "Sell Your Car", path: "/sell-your-car" },
+  { title: "Finance", path: "/finance" },
   { title: "Automative Solutions", path: "" },
   { title: "About Us", path: "" },
   { title: "FAQ", path: "" },
   { title: "Contact", path: "" },
 ];
 
-const SCROLLED = ["/cars", "/sell", "/finance", "/solutions"];
+const SCROLLED = ["/cars", "/sell", "/sell-your-car", "/finance", "/solutions"];
 
 export const Header = () => {
   const pathname = usePathname();

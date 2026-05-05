@@ -1,0 +1,86 @@
+.SellYourCarPage {
+  padding-top: 100px;
+
+  &-why {
+    padding: 0 0 100px;
+  }
+
+  &-whyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    align-items: center;
+
+    article {
+      max-width: 560px;
+    }
+  }
+
+  &-whyImage {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &-why {
+    h2 {
+      font-size: 42px;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--e-global-color-text);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .CustomButton-default {
+      padding: 15px 34px;
+      font-size: 16px;
+    }
+  }
+
+  &-faq {
+    .container {
+      width: 70%;
+      padding-bottom: 100px;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .SellYourCarPage {
+    &-whyGrid {
+      grid-template-columns: 1fr;
+    }
+
+    &-faq {
+      .container {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .SellYourCarPage {
+    &-why {
+      padding: 0 0 70px;
+    }
+
+    &-why h2 {
+      font-size: 34px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .SellYourCarPage {
+    &-why h2 {
+      font-size: 30px;
+    }
+  }
+}
