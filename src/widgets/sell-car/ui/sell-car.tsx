@@ -7,7 +7,11 @@ import { CarDetailsForm, PersonalDetailsForm, UploadImageForm } from "@/features
 
 import "./sell-car.scss";
 
-export const SellCarSection = () => {
+interface SellCarSectionProps {
+  subtitle?: string;
+}
+
+export const SellCarSection = ({ subtitle }: SellCarSectionProps) => {
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
 
@@ -17,6 +21,12 @@ export const SellCarSection = () => {
 
   const onPrevious = () => {
     setCurrent((prev) => prev - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log("Sell your car form data:", form.getFieldsValue(true));
+    form.resetFields();
+    setCurrent(0);
   };
 
   return (
@@ -29,6 +39,7 @@ export const SellCarSection = () => {
           <h2 className="title text-[42px] font-bold">
             Sell your Car! <br /> Fast, Safe and Secure.
           </h2>
+          {subtitle && <h3 className="SellCarSection-subtitle">{subtitle}</h3>}
         </div>
         <Steps
           className="w-full"
@@ -66,10 +77,11 @@ export const SellCarSection = () => {
         {current === 2 && (
           <UploadImageForm
             form={form}
-            onFinish={onChange}
+            onFinish={handleSubmit}
             hasPrevious
             onPrevious={onPrevious}
             className="w-[60%] SellCarSection-form"
+            btnOk="Send"
           />
         )}
       </div>

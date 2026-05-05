@@ -24,15 +24,25 @@ export const CarDetailsForm = ({
   return (
     <Form form={form} className={className} onFinish={onFinish}>
       <div className="flex gap-4 items-center">
-        <CustomInput type="text" placeholder="Car Make/Model" className="w-full" />
-        <CustomInput type="text" placeholder="Year" className="w-full" />
+        <CustomInput name="carMakeModel" type="text" placeholder="Car Make/Model" className="w-full" />
+        <CustomInput name="year" type="text" placeholder="Year" className="w-full" />
       </div>
       <div className="flex gap-4 items-center">
-        <CustomInput type="text" placeholder="Mileage" className="w-full" />
-        <CustomInput type="text" placeholder="Specifications" className="w-full" />
+        <CustomInput name="mileage" type="text" placeholder="Mileage" className="w-full" />
+        <CustomInput name="specifications" type="text" placeholder="Specifications" className="w-full" />
       </div>
-      <CustomInput type="text" placeholder="Are you looking to trade in?" className="w-full" />
-      <CustomTextArea placeholder="Notes here" className="w-full" inputClassName="!min-h-30" />
+      <CustomInput
+        name="tradeIn"
+        type="text"
+        placeholder="Are you looking to Trade-In?"
+        className="w-full"
+      />
+      <CustomTextArea
+        name="notes"
+        placeholder="Notes"
+        className="w-full"
+        inputClassName="!min-h-30"
+      />
       <div className="flex w-full gap-6">
         {hasPrevious && (
           <CustomButton onClick={onPrevious} className="w-full">

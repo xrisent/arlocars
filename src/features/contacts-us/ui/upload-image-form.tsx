@@ -44,7 +44,12 @@ export const UploadImageForm = ({
 
   return (
     <Form form={form} className={className} onFinish={onFinish}>
-      <Form.Item className="!mt-0 flex items-center justify-center" layout="vertical">
+      <Form.Item
+        name="images"
+        valuePropName="fileList"
+        className="!mt-0 flex items-center justify-center"
+        layout="vertical"
+      >
         <Upload
           listType="picture-card"
           fileList={fileListState}

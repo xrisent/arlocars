@@ -1,0 +1,46 @@
+.Accordion {
+  background: none;
+
+  .ant-collapse-body {
+    padding-inline: 25px !important;
+  }
+
+  .ant-collapse-header {
+    padding: 20px 25px !important;
+  }
+
+  .ant-collapse-title {
+    font-weight: 700;
+    color: var(--color-dark);
+    font-size: 16px;
+    font-family: var(--font-heading);
+    letter-spacing: normal;
+    transition: all 0.3s;
+  }
+
+  .ant-collapse-body {
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-medium);
+      line-height: 1.8;
+    }
+  }
+
+  .ant-collapse-item {
+    margin-bottom: 20px;
+    border: none;
+    background: none;
+    box-shadow: 0px 5px 30px 0px rgba(78, 76, 76, 0.1);
+
+    &-active {
+      .ant-collapse-title {
+        color: var(--color-gold);
+      }
+
+      .ant-collapse-expand-icon {
+        color: var(--color-gold);
+      }
+    }
+  }
+}

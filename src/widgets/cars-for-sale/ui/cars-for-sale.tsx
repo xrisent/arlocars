@@ -5,6 +5,9 @@ import { parseAsInteger, useQueryState, useQueryStates } from "nuqs";
 import { CarsGridView, useCarsQuery } from "@/entities/car";
 import { useDebounce } from "@/shared/hooks";
 
+// TODO
+import { mockedCars } from "../mocks/car-mocks";
+
 export const CarsForSale = () => {
   const [priceMin] = useQueryState("price_min");
   const [priceMax] = useQueryState("price_max");
@@ -66,7 +69,7 @@ export const CarsForSale = () => {
       : 10,
   });
 
-  const cars = data?.items || [];
+  const cars = data?.items || mockedCars;
 
   return (
     <div className="container">
