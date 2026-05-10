@@ -72,11 +72,13 @@
     gap: 14px;
     border-radius: 12px;
     padding: 25px;
+    align-items: start;
 
     .anticon {
       color: var(--color-gold);
       margin-top: 4px;
       font-size: 18px;
+      padding-top: 10px;
     }
 
     h3 {
@@ -101,7 +103,6 @@
     img {
       width: 100%;
       height: auto;
-      border-radius: 12px;
     }
 
     h2 {
@@ -160,7 +161,7 @@
       line-height: 1.8;
     }
 
-    .CustomButton-default{
+    .CustomButton-default {
       padding: 15px 34px;
       margin-top: 30px;
       font-size: 16px;
@@ -186,7 +187,6 @@
       font-size: 34px;
     }
 
-    &-intro,
     &-offers,
     &-why {
       padding: 70px 0;

@@ -88,6 +88,19 @@
   .SolutionCards {
     .card {
       max-width: 80%;
+
+      &-title {
+        font-size: 24px;
+      }
+
+      &-desc{
+        font-size: 14px;
+      }
+    }
+
+    .title,
+    .title span {
+      font-size: 34px;
     }
   }
 }

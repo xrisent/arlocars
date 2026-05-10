@@ -14,13 +14,19 @@ const links = [
   { title: "Cars For Sale", path: "/cars" },
   { title: "Sell Your Car", path: "/sell-your-car" },
   { title: "Finance", path: "/finance" },
-  { title: "Automative Solutions", path: "" },
-  { title: "About Us", path: "" },
-  { title: "FAQ", path: "" },
-  { title: "Contact", path: "" },
+  { title: "Automotive Solutions", path: "/automotive-solutions" },
+  { title: "About Us", path: "/about-us" },
+  { title: "Contact", path: "/contact" },
 ];
 
-const SCROLLED = ["/cars", "/sell", "/sell-your-car", "/finance", "/solutions"];
+const SCROLLED = [
+  "/cars",
+  "/sell-your-car",
+  "/finance",
+  "/automotive-solutions",
+  "/about-us",
+  "/contact",
+];
 
 export const Header = () => {
   const pathname = usePathname();
@@ -64,7 +70,7 @@ export const Header = () => {
             {links.map((item) => (
               <Link
                 key={item.title}
-                className="transition-colors duration-200 text-[15px] font-medium text-white"
+                className={`transition-colors duration-200 text-[15px] font-medium text-white ${pathname === item.path ? "active" : ""}`}
                 href={item.path}
               >
                 {item.title}
