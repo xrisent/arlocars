@@ -1,4 +1,15 @@
 .HeroSection {
+  &-slide {
+    min-height: 100%;
+  }
+
+  &-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
   .title {
     font-family: var(--font-heading);
   }

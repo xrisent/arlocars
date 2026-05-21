@@ -19,18 +19,11 @@ const links = [
   { title: "Contact", path: "/contact" },
 ];
 
-const SCROLLED = [
-  "/cars",
-  "/sell-your-car",
-  "/finance",
-  "/automotive-solutions",
-  "/about-us",
-  "/contact",
-];
+const NOT_SCROLLED = ["/"];
 
 export const Header = () => {
   const pathname = usePathname();
-  const shouldBeScrolled = !SCROLLED.includes(pathname);
+  const shouldNotBeScrolled = !NOT_SCROLLED.some((path) => pathname === path);
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -59,7 +52,7 @@ export const Header = () => {
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 py-4 Header ${isScrolled ? "scrolled" : ""} ${!shouldBeScrolled ? "blacked" : ""}`}
+        className={`fixed top-0 w-full z-50 py-4 Header ${isScrolled ? "scrolled" : ""} ${!shouldNotBeScrolled ? "" : "blacked"}`}
       >
         <div className="container flex justify-between items-center">
           <Link href="/">
@@ -78,7 +71,9 @@ export const Header = () => {
             ))}
           </nav>
 
-          <CustomButton className="Header-btn">Get a Quote</CustomButton>
+          <Link href="/contact">
+            <CustomButton className="Header-btn">Get a Quote</CustomButton>
+          </Link>
 
           <div onClick={() => setDrawerOpen(true)} className="Header-burger"></div>
         </div>
@@ -116,9 +111,9 @@ export const Header = () => {
                 {item.title}
               </Link>
             ))}
-            <CustomButton className="drawer-btn" onClick={closeDrawer}>
-              Get a Quote
-            </CustomButton>
+            <Link href="/contact" onClick={closeDrawer}>
+              <CustomButton className="drawer-btn">Get a Quote</CustomButton>
+            </Link>
           </div>
         </div>
       </Drawer>

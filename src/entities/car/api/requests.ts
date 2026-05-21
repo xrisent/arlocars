@@ -99,6 +99,39 @@ export async function getCarById(id: number): Promise<CarDto | null> {
   return row ? toCarDto(row) : null;
 }
 
+export function carRequestToSearchParams(params: ICarRequest): URLSearchParams {
+  const searchParams = new URLSearchParams();
+
+  if (params.page != null) searchParams.set("page", String(params.page));
+  if (params.page_size != null) searchParams.set("pageSize", String(params.page_size));
+  if (params.priceMin != null) searchParams.set("priceMin", String(params.priceMin));
+  if (params.priceMax != null) searchParams.set("priceMax", String(params.priceMax));
+  if (params.yearMin != null) searchParams.set("yearMin", String(params.yearMin));
+  if (params.yearMax != null) searchParams.set("yearMax", String(params.yearMax));
+  if (params.q) searchParams.set("q", params.q);
+  params.colors?.forEach((color) => searchParams.append("colors", color));
+  params.categoryIds?.forEach((id) => searchParams.append("categoryIds", String(id)));
+
+  return searchParams;
+}
+
+export async function listAllCarIds(): Promise<{ id: number; lastModified: Date }[]> {
+  const rows = await prisma.car.findMany({
+    select: { id: true, createdAt: true },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return rows.map((row) => ({ id: row.id, lastModified: row.createdAt }));
+}
+
 export const fetchCars = (params: ICarRequest) => {
-  return axios.get(API_ENDPOINTS.CARS.BASE, { params });
+  const { page_size, categoryIds, ...rest } = params;
+
+  return axios.get(API_ENDPOINTS.CARS.BASE, {
+    params: {
+      ...rest,
+      pageSize: page_size,
+      categoryIds,
+    },
+  });
 };

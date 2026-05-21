@@ -63,6 +63,7 @@ const services = [
 export const AutomotiveSolutionsPage = () => {
   return (
     <main className="AutomotiveSolutionsPage">
+      <h1 className="sr-only">Automotive Solutions in Dubai</h1>
       <section className="AutomotiveSolutionsPage-services">
         <div className="container">
           {services.map((service, index) => (

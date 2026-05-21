@@ -44,7 +44,7 @@ export const FinancePage = () => {
       <section className="FinancePage-intro">
         <div className="container">
           <article>
-            <h2>Drive Now. Pay Smart with Arlo Cars</h2>
+            <h1>Drive Now. Pay Smart with Arlo Cars</h1>
             <p>
               At Arlo Cars, we believe financing your next vehicle should be effortless,
               transparent, and stress-free. Whether you&apos;re buying your first ride or upgrading

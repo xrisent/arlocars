@@ -1,9 +1,15 @@
+import type { CarListResponse } from "@/entities/car";
 import { CarsForSale } from "@/widgets/cars-for-sale";
 
-export const CarsPage = () => {
+type CarsPageProps = {
+  initialData?: CarListResponse;
+};
+
+export const CarsPage = ({ initialData }: CarsPageProps) => {
   return (
-    <main >
-      <CarsForSale />
+    <main>
+      <h1 className="sr-only">Cars For Sale in Dubai</h1>
+      <CarsForSale initialData={initialData} />
     </main>
   );
 };

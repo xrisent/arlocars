@@ -12,13 +12,13 @@ import { CustomButton, Logo } from "@/shared/ui";
 
 import "./footer.scss";
 
-// TODO
 const links = [
-  { title: "Cars For Sale", path: "" },
-  { title: "Sell Your Car", path: "" },
-  { title: "Finance", path: "" },
-  { title: "Automative Solutions", path: "" },
-  { title: "Contact", path: "" },
+  { title: "Cars For Sale", path: "/cars" },
+  { title: "Sell Your Car", path: "/sell-your-car" },
+  { title: "Finance", path: "/finance" },
+  { title: "Automotive Solutions", path: "/automotive-solutions" },
+  { title: "About Us", path: "/about-us" },
+  { title: "Contact", path: "/contact" },
 ];
 
 export const Footer = () => {
@@ -33,14 +33,19 @@ export const Footer = () => {
               registration, sell smart, drive stress-free.
             </p>
             <div className="flex items-center gap-[10px]">
-              <Link href="https://www.instagram.com/arlocarsdxb/" target="_blank">
+              <Link
+                href="https://www.instagram.com/arlocarsdxb/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <CustomButton className="w-[36px] !h-[36px] m-0 !p-0">
                   <InstagramOutlined />
                 </CustomButton>
               </Link>
               <Link
-                href="https://api.whatsapp.com/send/?phone=971526902710&text=Hi+%2AARLO+CARS%2A%21+I+need+more+info+about+FAQ+-+ARLO+CARS+https%3A%2F%2Farlocars.ae%2Ffaq%2F&type=phone_number&app_absent=0"
+                href="https://api.whatsapp.com/send/?phone=971526902710&text=Hi+%2AARLO+CARS%2A%21+I+need+more+info+https%3A%2F%2Farlocars.ae%2Fsell-your-car&type=phone_number&app_absent=0"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <CustomButton className="w-[36px] !h-[36px] m-0 !p-0">
                   <WhatsAppOutlined />
