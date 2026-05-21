@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { CustomButton } from "@/shared/ui";
 
 import "./services-banner.scss";
@@ -15,7 +17,9 @@ export const ServicesBanner = () => {
             From registration renewal to cosmetic repairs, Arlo Cars offers complete care for your
             vehicle—hassle-free, trustworthy, and efficient.
           </p>
-          <CustomButton className="w-fit !rounded-[5px]">Explore Services</CustomButton>
+          <Link href="/automotive-solutions">
+            <CustomButton className="w-fit !rounded-[5px]">Explore Services</CustomButton>
+          </Link>
         </div>
       </div>
     </section>

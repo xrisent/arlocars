@@ -9,9 +9,11 @@ import "./sell-car.scss";
 
 interface SellCarSectionProps {
   subtitle?: string;
+  mainHeading?: boolean;
 }
 
-export const SellCarSection = ({ subtitle }: SellCarSectionProps) => {
+export const SellCarSection = ({ subtitle, mainHeading = false }: SellCarSectionProps) => {
+  const TitleTag = mainHeading ? "h1" : "h2";
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
 
@@ -36,9 +38,9 @@ export const SellCarSection = ({ subtitle }: SellCarSectionProps) => {
           <p className="text-[15px] text-[var(--color-medium)] small-desc">
             Sell Your Car in 3 Easy Steps
           </p>
-          <h2 className="title text-[42px] font-bold">
+          <TitleTag className="title text-[42px] font-bold">
             Sell your Car! <br /> Fast, Safe and Secure.
-          </h2>
+          </TitleTag>
           {subtitle && <h3 className="SellCarSection-subtitle">{subtitle}</h3>}
         </div>
         <Steps

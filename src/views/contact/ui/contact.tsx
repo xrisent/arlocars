@@ -43,7 +43,7 @@ export const ContactPage = () => {
           </Form>
           <div className="ContactPage-content">
             <p className="ContactPage-heading">Get in Touch</p>
-            <h1 className="ContactPage-title">We’re Here to Help — Contact Arlocars</h1>
+            <h1 className="ContactPage-title">We’re Here to Help — Contact Arlo Cars</h1>
             <p className="ContactPage-text">
               Whether you&apos;re ready to sell your car, need help with documentation, or just have
               a few questions — our team is here to assist you every step of the way. Reach out

@@ -1,0 +1,74 @@
+.CarDetailPage {
+  padding: 160px 0 80px;
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &-breadcrumb {
+    font-size: 14px;
+    color: var(--color-medium);
+
+    a {
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--color-gold);
+      }
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  &-mainImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  &-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  &-price {
+    font-size: 24px;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+  }
+
+  &-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  &-description {
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      white-space: pre-line;
+      line-height: 1.7;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .CarDetailPage-grid {
+    grid-template-columns: 1fr;
+  }
+}

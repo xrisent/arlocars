@@ -3,12 +3,17 @@
 import { parseAsInteger, useQueryState, useQueryStates } from "nuqs";
 
 import { CarsGridView, useCarsQuery } from "@/entities/car";
+import type { CarListResponse } from "@/entities/car";
 import { useDebounce } from "@/shared/hooks";
 
-// TODO
 import { mockedCars } from "../mocks/car-mocks";
 
-export const CarsForSale = () => {
+type CarsForSaleProps = {
+  initialData?: CarListResponse;
+};
+
+// TODO
+export const CarsForSale = ({ initialData }: CarsForSaleProps) => {
   const [priceMin] = useQueryState("price_min");
   const [priceMax] = useQueryState("price_max");
   const [yearMin] = useQueryState("year_min");
@@ -29,7 +34,8 @@ export const CarsForSale = () => {
   const debouncedPageSize = useDebounce(pageSize, 500);
   const debouncedPage = useDebounce(page, 500);
 
-  const { data, isLoading } = useCarsQuery({
+  const { data, isLoading } = useCarsQuery(
+    {
     priceMin: debouncedPriceMin
       ? isNaN(parseInt(debouncedPriceMin))
         ? undefined
@@ -67,12 +73,14 @@ export const CarsForSale = () => {
         ? 10
         : parseInt(debouncedPageSize)
       : 10,
-  });
+    },
+    initialData,
+  );
 
-  const cars = data?.items || mockedCars;
+  const cars = data?.items?.length ? data.items : mockedCars;
 
   return (
-    <div className="container">
+    <div className="container pt-[130px]">
       <CarsGridView
         items={cars}
         pagination={{
@@ -93,7 +101,7 @@ export const CarsForSale = () => {
           },
         }}
         loading={isLoading}
-        className="pt-[160px] pb-[40px]"
+        className="pb-[40px]"
       />
     </div>
   );

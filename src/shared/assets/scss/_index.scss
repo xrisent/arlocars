@@ -75,3 +75,15 @@ body {
   --e-global-color-accent: #d4af37;
   --e-global-color-7f3f40c: #0d0c1b;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
