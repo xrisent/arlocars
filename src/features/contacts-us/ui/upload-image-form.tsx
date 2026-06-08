@@ -1,5 +1,7 @@
+"use client";
+
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, FormInstance, message, Upload, UploadFile } from "antd";
+import { App, Form, FormInstance, Upload, UploadFile } from "antd";
 import { useState } from "react";
 
 import { CustomButton } from "@/shared/ui";
@@ -12,6 +14,7 @@ interface IUploadImageForm {
   onPrevious?: () => void;
   btnOk?: string;
   btnCancel?: string;
+  submitting?: boolean;
 }
 
 export const UploadImageForm = ({
@@ -22,8 +25,10 @@ export const UploadImageForm = ({
   onPrevious,
   btnOk,
   btnCancel,
+  submitting = false,
 }: IUploadImageForm) => {
   const [fileListState, setFileListState] = useState<UploadFile[]>([]);
+  const { message } = App.useApp();
 
   const handlePreview = async (file: UploadFile) => {
     let src = file.url as string;
@@ -44,12 +49,7 @@ export const UploadImageForm = ({
 
   return (
     <Form form={form} className={className} onFinish={onFinish}>
-      <Form.Item
-        name="images"
-        valuePropName="fileList"
-        className="!mt-0 flex items-center justify-center"
-        layout="vertical"
-      >
+      <Form.Item name="images" className="!mt-0 flex items-center justify-center" layout="vertical">
         <Upload
           listType="picture-card"
           fileList={fileListState}
@@ -79,11 +79,11 @@ export const UploadImageForm = ({
       </Form.Item>
       <div className="flex w-full gap-6">
         {hasPrevious && (
-          <CustomButton onClick={onPrevious} className="w-full">
+          <CustomButton onClick={onPrevious} className="w-full" disabled={submitting}>
             {btnCancel || "Previous"}
           </CustomButton>
         )}
-        <CustomButton htmlType="submit" className="w-full">
+        <CustomButton htmlType="submit" className="w-full" disabled={submitting}>
           {btnOk || "Next"}
         </CustomButton>
       </div>

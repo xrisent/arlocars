@@ -1,9 +1,14 @@
 "use client";
 
-import { Form, Steps } from "antd";
+import { App, Form, Steps, UploadFile } from "antd";
 import { useState } from "react";
 
-import { CarDetailsForm, PersonalDetailsForm, UploadImageForm } from "@/features/contacts-us";
+import {
+  CarDetailsForm,
+  PersonalDetailsForm,
+  submitSellCarForm,
+  UploadImageForm,
+} from "@/features/contacts-us";
 
 import "./sell-car.scss";
 
@@ -15,7 +20,9 @@ interface SellCarSectionProps {
 export const SellCarSection = ({ subtitle, mainHeading = false }: SellCarSectionProps) => {
   const TitleTag = mainHeading ? "h1" : "h2";
   const [current, setCurrent] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
   const [form] = Form.useForm();
+  const { message } = App.useApp();
 
   const onChange = () => {
     setCurrent((prev) => prev + 1);
@@ -25,10 +32,37 @@ export const SellCarSection = ({ subtitle, mainHeading = false }: SellCarSection
     setCurrent((prev) => prev - 1);
   };
 
-  const handleSubmit = () => {
-    console.log("Sell your car form data:", form.getFieldsValue(true));
-    form.resetFields();
-    setCurrent(0);
+  const handleSubmit = async () => {
+    const values = form.getFieldsValue(true);
+    const formData = new FormData();
+
+    formData.append("fullName", values.fullName ?? "");
+    formData.append("contactNumber", values.contactNumber ?? "");
+    formData.append("carMakeModel", values.carMakeModel ?? "");
+    formData.append("year", values.year ?? "");
+    formData.append("mileage", values.mileage ?? "");
+    formData.append("specifications", values.specifications ?? "");
+    formData.append("tradeIn", values.tradeIn ?? "");
+    formData.append("notes", values.notes ?? "");
+
+    const images = (values.images.fileList ?? []) as UploadFile[];
+    for (const file of images) {
+      if (file.originFileObj) {
+        formData.append("images", file.originFileObj, file.name);
+      }
+    }
+
+    setSubmitting(true);
+    try {
+      await submitSellCarForm(formData);
+      message.success("Your request has been sent successfully!");
+      form.resetFields();
+      setCurrent(0);
+    } catch (e) {
+      message.error(e instanceof Error ? e.message : "Failed to send request");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -83,7 +117,8 @@ export const SellCarSection = ({ subtitle, mainHeading = false }: SellCarSection
             hasPrevious
             onPrevious={onPrevious}
             className="w-[60%] SellCarSection-form"
-            btnOk="Send"
+            btnOk={submitting ? "Sending..." : "Send"}
+            submitting={submitting}
           />
         )}
       </div>

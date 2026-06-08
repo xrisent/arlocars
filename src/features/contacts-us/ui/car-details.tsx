@@ -24,12 +24,35 @@ export const CarDetailsForm = ({
   return (
     <Form form={form} className={className} onFinish={onFinish}>
       <div className="flex gap-4 items-center">
-        <CustomInput name="carMakeModel" type="text" placeholder="Car Make/Model" className="w-full" />
-        <CustomInput name="year" type="text" placeholder="Year" className="w-full" />
+        <CustomInput
+          name="carMakeModel"
+          type="text"
+          rules={[{ required: true, message: "Required field" }]}
+          placeholder="Car Make/Model"
+          className="w-full"
+        />
+        <CustomInput
+          name="year"
+          rules={[{ required: true, message: "Required field" }]}
+          type="text"
+          placeholder="Year"
+          className="w-full"
+        />
       </div>
       <div className="flex gap-4 items-center">
-        <CustomInput name="mileage" type="text" placeholder="Mileage" className="w-full" />
-        <CustomInput name="specifications" type="text" placeholder="Specifications" className="w-full" />
+        <CustomInput
+          name="mileage"
+          rules={[{ required: true, message: "Required field" }]}
+          type="text"
+          placeholder="Mileage"
+          className="w-full"
+        />
+        <CustomInput
+          name="specifications"
+          type="text"
+          placeholder="Specifications"
+          className="w-full"
+        />
       </div>
       <CustomInput
         name="tradeIn"

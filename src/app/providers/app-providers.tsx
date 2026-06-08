@@ -1,7 +1,7 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ConfigProvider } from "antd";
+import { App, ConfigProvider } from "antd";
 import { Provider as JotaiProvider } from "jotai";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { useState } from "react";
@@ -21,7 +21,9 @@ export const AppProviders = ({ children }: AppProvidersProps) => {
     <JotaiProvider store={globalStore}>
       <QueryClientProvider client={queryClient}>
         <NuqsAdapter>
-          <ConfigProvider theme={mainTheme}>{children}</ConfigProvider>
+          <ConfigProvider theme={mainTheme}>
+            <App>{children}</App>
+          </ConfigProvider>
         </NuqsAdapter>
       </QueryClientProvider>
     </JotaiProvider>
