@@ -1,15 +1,27 @@
-function requireEnv(name: string): string {
-  const v = process.env[name];
-  if (!v) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-  return v;
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
+
+export function getSmtpTransportOptions(): SMTPTransport.Options {
+  const port = Number(process.env.SMTP_PORT);
+
+  return {
+    host: process.env.SMTP_HOST,
+    port,
+    secure: port === 465,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  };
+}
+
+export function getMailFrom(): string {
+  return process.env.MAIL_FROM ?? process.env.SMTP_USER ?? "";
 }
 
 export function getJwtAccessSecret(): Uint8Array {
-  return new TextEncoder().encode(requireEnv("JWT_ACCESS_SECRET"));
+  return new TextEncoder().encode(process.env.JWT_ACCESS_SECRET);
 }
 
 export function getJwtRefreshSecret(): Uint8Array {
-  return new TextEncoder().encode(requireEnv("JWT_REFRESH_SECRET"));
+  return new TextEncoder().encode(process.env.JWT_REFRESH_SECRET);
 }

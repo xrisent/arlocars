@@ -24,8 +24,18 @@ export const PersonalDetailsForm = ({
   return (
     <Form form={form} className={className} onFinish={onFinish}>
       <div className="flex gap-4 items-center">
-        <CustomInput name="fullName" type="text" placeholder="Full Name" className="w-full" />
-        <CustomPhoneInput name="contactNumber" className="w-full" />
+        <CustomInput
+          rules={[{ required: true, message: "Required field" }]}
+          name="fullName"
+          type="text"
+          placeholder="Full Name"
+          className="w-full"
+        />
+        <CustomPhoneInput
+          name="contactNumber"
+          className="w-full"
+          rules={[{ required: true, message: "Required field" }]}
+        />
       </div>
       <div className="flex w-full gap-6">
         {hasPrevious && (

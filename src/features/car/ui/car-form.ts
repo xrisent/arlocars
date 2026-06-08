@@ -1,31 +1,6 @@
 import type { ParsedCarCreate, ParsedCarUpdate } from "@/features/car/model/interfaces";
 import { HttpError } from "@/shared/lib/http";
-
-function num(raw: FormDataEntryValue | null): number | undefined {
-  if (raw == null || raw === "") return undefined;
-  const s = typeof raw === "string" ? raw : "";
-  const n = Number.parseFloat(s);
-  return Number.isFinite(n) ? n : undefined;
-}
-
-function int(raw: FormDataEntryValue | null): number | undefined {
-  if (raw == null || raw === "") return undefined;
-  const s = typeof raw === "string" ? raw : "";
-  const n = Number.parseInt(s, 10);
-  return Number.isFinite(n) ? n : undefined;
-}
-
-function str(raw: FormDataEntryValue | null): string | undefined {
-  if (raw == null) return undefined;
-  if (typeof raw === "string") return raw;
-  return undefined;
-}
-
-function bool(raw: FormDataEntryValue | null): boolean {
-  if (raw == null) return false;
-  const s = typeof raw === "string" ? raw.toLowerCase() : "";
-  return s === "1" || s === "true" || s === "yes";
-}
+import { bool, int, num, str } from "@/shared/lib/parser";
 
 export function parseCarCreateForm(form: FormData): ParsedCarCreate {
   const price = num(form.get("price"));
