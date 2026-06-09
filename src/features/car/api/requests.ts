@@ -7,6 +7,7 @@ import { prisma } from "@/shared/api/prisma";
 import {
   appendCarPhotos,
   getUploadIdFromMainPhoto,
+  removeGalleryPhotos,
   removeUploadDir,
   replaceMainPhoto,
   saveNewCarImages,
@@ -77,6 +78,7 @@ export async function updateCar(id: number, data: ParsedCarUpdate): Promise<CarD
   let currentPhotos = parsePhotosJson(photosJson);
 
   if (data.replacePhotos) {
+    await removeGalleryPhotos(uploadId);
     currentPhotos = [];
   }
 

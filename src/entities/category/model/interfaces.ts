@@ -1,12 +1,12 @@
-export type CategoryDto = {
+export interface CategoryDto {
   id: number;
   name: string;
-};
+}
 
-export type CategoryListResponse = {
+export interface CategoryListResponse {
   items: CategoryDto[];
   total: number;
   page: number;
   pageSize: number;
   totalPages: number;
-};
+}

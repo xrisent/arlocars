@@ -3,12 +3,10 @@ import { ReactNode } from "react";
 
 import "./custom-button.scss";
 
-type ButtonVariants = "default" | "secondary";
-
 export interface ButtonProps extends Omit<AntdButtonProps, "variant"> {
   children?: ReactNode;
   width?: number | string;
-  variant?: ButtonVariants;
+  variant?: "default" | "secondary";
   active?: boolean;
 }
 

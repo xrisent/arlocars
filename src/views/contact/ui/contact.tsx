@@ -10,11 +10,11 @@ import { CustomButton, CustomInput, CustomTextArea } from "@/shared/ui";
 
 import "./contact.scss";
 
-type ContactFormValues = {
+interface ContactFormValues {
   name: string;
   email: string;
   message: string;
-};
+}
 
 export const ContactPage = () => {
   const [form] = Form.useForm<ContactFormValues>();

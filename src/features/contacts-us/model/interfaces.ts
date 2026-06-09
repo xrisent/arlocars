@@ -1,10 +1,10 @@
-export type ContactQuotePayload = {
+export interface ContactQuotePayload {
   name: string;
   email: string;
   message: string;
-};
+}
 
-export type SellCarPayload = {
+export interface SellCarPayload {
   fullName: string;
   contactNumber: string;
   carMakeModel: string;
@@ -14,4 +14,4 @@ export type SellCarPayload = {
   tradeIn: string;
   notes: string;
   images: File[];
-};
+}

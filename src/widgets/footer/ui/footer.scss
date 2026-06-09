@@ -3,6 +3,13 @@
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("/footer-bg-2.webp") center/cover no-repeat;
 
+  a {
+    color: var(--color-white);
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
+
   .title {
     font-family: var(--font-heading);
   }
@@ -14,12 +21,12 @@
       flex-direction: column;
       gap: 40px;
     }
-    
+
     .footer-item {
       align-items: center;
       text-align: center;
-    } 
-    .footer-gap{
+    }
+    .footer-gap {
       gap: 20px;
     }
   }

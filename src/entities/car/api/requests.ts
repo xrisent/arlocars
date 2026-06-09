@@ -135,3 +135,8 @@ export const fetchCars = (params: ICarRequest) => {
     },
   });
 };
+
+export async function fetchCarById(id: number): Promise<CarDto> {
+  const response = await axios.get<CarDto>(API_ENDPOINTS.CARS.BY_ID(id));
+  return response.data;
+}

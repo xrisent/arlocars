@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/shared/config/site";
 
-type PageMetadataInput = {
+interface PageMetadataInput {
   title: string;
   description: string;
   path: string;
   noIndex?: boolean;
   ogImage?: string;
-};
+}
 
 export function buildPageMetadata({
   title,

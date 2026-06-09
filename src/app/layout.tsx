@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 import { AppProviders } from "@/app/providers";
+import { SiteChrome } from "@/app/providers/site-chrome";
 import { siteConfig } from "@/shared/config/site";
 import { JsonLd, organizationSchema } from "@/shared/seo";
-import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header";
 
 import "../shared/assets/scss/_index.scss";
 import "../shared/assets/scss/_media.scss";
@@ -53,9 +52,9 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         <JsonLd data={organizationSchema()} />
-        <Header />
-        <AppProviders>{children}</AppProviders>
-        <Footer />
+        <AppProviders>
+          <SiteChrome>{children}</SiteChrome>
+        </AppProviders>
       </body>
     </html>
   );

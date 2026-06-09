@@ -8,9 +8,9 @@ import { useDebounce } from "@/shared/hooks";
 
 import { mockedCars } from "../mocks/car-mocks";
 
-type CarsForSaleProps = {
+interface CarsForSaleProps {
   initialData?: CarListResponse;
-};
+}
 
 // TODO
 export const CarsForSale = ({ initialData }: CarsForSaleProps) => {

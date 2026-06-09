@@ -10,9 +10,9 @@ import { createQueryClient } from "@/shared/api/query-client";
 import { mainTheme } from "@/shared/assets/themes";
 import { globalStore } from "@/shared/lib/store";
 
-type AppProvidersProps = {
+interface AppProvidersProps {
   children: React.ReactNode;
-};
+}
 
 export const AppProviders = ({ children }: AppProvidersProps) => {
   const [queryClient] = useState(() => createQueryClient());
