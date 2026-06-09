@@ -1,8 +1,44 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { mkdir, readdir, rm, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { HttpError } from "@/shared/lib/http";
 import { absPublicFilePath } from "@/shared/lib/public-path";
+
+function uniqueId(): string {
+  return randomUUID().slice(0, 8);
+}
+
+function uploadDirAbs(uploadId: string): string {
+  return absPublicFilePath(`uploads/cars/${uploadId}`);
+}
+
+async function removeFilesMatching(dirAbs: string, predicate: (name: string) => boolean): Promise<void> {
+  let entries: string[];
+  try {
+    entries = await readdir(dirAbs);
+  } catch {
+    return;
+  }
+
+  await Promise.all(
+    entries
+      .filter(predicate)
+      .map((name) => unlink(path.join(dirAbs, name)).catch(() => undefined)),
+  );
+}
+
+async function removeGalleryFiles(dirAbs: string): Promise<void> {
+  await removeFilesMatching(dirAbs, (name) => name.startsWith("photo-"));
+}
+
+async function removeMainFiles(dirAbs: string): Promise<void> {
+  await removeFilesMatching(dirAbs, (name) => name.startsWith("main"));
+}
+
+export async function removeGalleryPhotos(uploadId: string): Promise<void> {
+  await removeGalleryFiles(uploadDirAbs(uploadId));
+}
 
 const MIME_TO_EXT: Record<string, string> = {
   "image/jpeg": "jpg",
@@ -43,7 +79,7 @@ export async function saveNewCarImages(params: {
   await mkdir(dirAbs, { recursive: true });
 
   const mainExt = extFromFile(params.mainPhoto);
-  const mainName = `main.${mainExt}`;
+  const mainName = `main-${uniqueId()}.${mainExt}`;
   const mainAbs = path.join(dirAbs, mainName);
   const mainBuf = Buffer.from(await params.mainPhoto.arrayBuffer());
   await writeFile(mainAbs, mainBuf);
@@ -53,7 +89,7 @@ export async function saveNewCarImages(params: {
   for (let i = 0; i < params.photos.length; i++) {
     const file = params.photos[i];
     const ext = extFromFile(file);
-    const fname = `photo-${i}.${ext}`;
+    const fname = `photo-${i}-${uniqueId()}.${ext}`;
     const abs = path.join(dirAbs, fname);
     await writeFile(abs, Buffer.from(await file.arrayBuffer()));
     photoPaths.push(`${baseRel}/${fname}`);
@@ -76,7 +112,7 @@ export async function appendCarPhotos(params: {
     const file = params.photos[i];
     assertImage(file);
     const ext = extFromFile(file);
-    const fname = `photo-${params.startIndex + i}.${ext}`;
+    const fname = `photo-${params.startIndex + i}-${uniqueId()}.${ext}`;
     const abs = path.join(dirAbs, fname);
     await writeFile(abs, Buffer.from(await file.arrayBuffer()));
     out.push(`${baseRel}/${fname}`);
@@ -89,8 +125,9 @@ export async function replaceMainPhoto(params: { uploadId: string; mainPhoto: Fi
   const baseRel = `/uploads/cars/${params.uploadId}`;
   const dirAbs = absPublicFilePath(`${baseRel.slice(1)}`);
   await mkdir(dirAbs, { recursive: true });
+  await removeMainFiles(dirAbs);
   const ext = extFromFile(params.mainPhoto);
-  const mainName = `main.${ext}`;
+  const mainName = `main-${uniqueId()}.${ext}`;
   const mainAbs = path.join(dirAbs, mainName);
   await writeFile(mainAbs, Buffer.from(await params.mainPhoto.arrayBuffer()));
   return `${baseRel}/${mainName}`;

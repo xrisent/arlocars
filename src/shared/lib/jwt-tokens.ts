@@ -5,10 +5,10 @@ import { getJwtAccessSecret, getJwtRefreshSecret } from "@/shared/config/env";
 const ACCESS_TTL = "15m";
 const REFRESH_TTL = "7d";
 
-export type AccessPayload = {
+export interface AccessPayload {
   sub: number;
   isAdmin: boolean;
-};
+}
 
 export async function signAccessToken(payload: AccessPayload): Promise<string> {
   return new SignJWT({ isAdmin: payload.isAdmin })

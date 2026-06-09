@@ -1,5 +1,5 @@
 import type { CarDto } from "@/entities/car";
 
-export type CarViewProps = {
+export interface CarViewProps {
   car: CarDto;
-};
+}

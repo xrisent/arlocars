@@ -1,5 +1,5 @@
 import type { CategoryDto } from "@/entities/category/model/interfaces";
 
-export type CategoryViewProps = {
+export interface CategoryViewProps {
   category: CategoryDto;
-};
+}

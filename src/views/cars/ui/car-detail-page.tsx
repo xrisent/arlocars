@@ -6,9 +6,9 @@ import { CustomButton } from "@/shared/ui";
 
 import "./car-detail-page.scss";
 
-type CarDetailPageProps = {
+interface CarDetailPageProps {
   car: CarDto;
-};
+}
 
 export function CarDetailPage({ car }: CarDetailPageProps) {
   const imageAlt = `${car.name} — ${car.year} used car for sale in Dubai`;

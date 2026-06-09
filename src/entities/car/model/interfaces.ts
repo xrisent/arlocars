@@ -1,4 +1,4 @@
-export type Car = {
+export interface Car {
   id: number;
   price: number;
   description: string;
@@ -9,9 +9,9 @@ export type Car = {
   color: string;
   categoryId: number;
   createdAt: string;
-};
+}
 
-export type CarDto = {
+export interface CarDto {
   id: number;
   price: number;
   description: string;
@@ -23,17 +23,17 @@ export type CarDto = {
   categoryId: number;
   category: { id: number; name: string };
   createdAt: string;
-};
+}
 
-export type CarListResponse = {
+export interface CarListResponse {
   items: CarDto[];
   total: number;
   page: number;
   pageSize: number;
   totalPages: number;
-};
+}
 
-export type CarRowWithCategory = {
+export interface CarRowWithCategory {
   id: number;
   price: number;
   description: string;
@@ -45,7 +45,7 @@ export type CarRowWithCategory = {
   categoryId: number;
   createdAt: Date;
   category: { id: number; name: string };
-};
+}
 
 export interface ICarRequest {
   priceMin?: number;

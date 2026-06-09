@@ -5,9 +5,9 @@ import { getCarById } from "@/entities/car/api/requests";
 import { breadcrumbSchema, buildPageMetadata, JsonLd, vehicleSchema } from "@/shared/seo";
 import { CarDetailPage } from "@/views/cars/ui/car-detail-page";
 
-type PageProps = {
+interface PageProps {
   params: Promise<{ id: string }>;
-};
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id: idParam } = await params;

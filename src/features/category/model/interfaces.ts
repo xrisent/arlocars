@@ -1,7 +1,7 @@
-export type CategoryCreateInput = {
+export interface CategoryCreateInput {
   name: string;
-};
+}
 
-export type CategoryUpdateInput = {
+export interface CategoryUpdateInput {
   name: string;
-};
+}

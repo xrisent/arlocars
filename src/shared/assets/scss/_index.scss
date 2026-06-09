@@ -16,6 +16,15 @@ body {
   max-width: 1320px;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
 :root {
   --font-heading: "Oswald", sans-serif;
   --font-body: "Roboto", sans-serif;

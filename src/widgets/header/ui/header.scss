@@ -4,6 +4,7 @@
     backdrop-filter 0.3s ease;
   a {
     font-family: var(--font-body);
+    color: var(--color-white);
     &:hover,
     &.active {
       color: var(--color-gold);

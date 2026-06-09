@@ -1,4 +1,4 @@
-export type ParsedCarCreate = {
+export interface ParsedCarCreate {
   price: number;
   year: number;
   color: string;
@@ -7,9 +7,9 @@ export type ParsedCarCreate = {
   name: string;
   mainPhoto: File;
   photos: File[];
-};
+}
 
-export type ParsedCarUpdate = {
+export interface ParsedCarUpdate {
   price?: number;
   year?: number;
   name?: string;
@@ -19,4 +19,4 @@ export type ParsedCarUpdate = {
   mainPhoto?: File;
   photos: File[];
   replacePhotos: boolean;
-};
+}

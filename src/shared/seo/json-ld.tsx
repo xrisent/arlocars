@@ -1,6 +1,6 @@
-type JsonLdProps = {
+interface JsonLdProps {
   data: Record<string, unknown> | Record<string, unknown>[];
-};
+}
 
 export function JsonLd({ data }: JsonLdProps) {
   return (

@@ -1,9 +1,9 @@
 import { refreshSession } from "@/features/auth";
 import { handleApiError, HttpError, jsonOk } from "@/shared/lib/http";
 
-type Body = {
+interface Body {
   refreshToken?: string;
-};
+}
 
 export async function POST(request: Request) {
   try {

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { CarListResponse, carsAtom, fetchCars, ICarRequest } from "@/entities/car";
+import { CarListResponse, carsAtom, fetchCarById, fetchCars, ICarRequest } from "@/entities/car";
 import { QUERY_KEYS } from "@/shared/constants";
 
 export const useCarsQuery = (params: ICarRequest, initialData?: CarListResponse) => {
@@ -28,3 +28,11 @@ export const useCarsQuery = (params: ICarRequest, initialData?: CarListResponse)
 
   return query;
 };
+
+export function useCarQuery(id: number) {
+  return useQuery({
+    queryKey: QUERY_KEYS.CARS.DETAIL(id),
+    queryFn: () => fetchCarById(id),
+    enabled: Number.isFinite(id),
+  });
+}

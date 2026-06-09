@@ -1,10 +1,10 @@
 import { loginUser } from "@/features/auth";
 import { handleApiError, HttpError, jsonOk } from "@/shared/lib/http";
 
-type Body = {
+interface Body {
   login?: string;
   password?: string;
-};
+}
 
 export async function POST(request: Request) {
   try {

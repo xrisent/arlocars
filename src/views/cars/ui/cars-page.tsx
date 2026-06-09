@@ -1,9 +1,9 @@
 import type { CarListResponse } from "@/entities/car";
 import { CarsForSale } from "@/widgets/cars-for-sale";
 
-type CarsPageProps = {
+interface CarsPageProps {
   initialData?: CarListResponse;
-};
+}
 
 export const CarsPage = ({ initialData }: CarsPageProps) => {
   return (
