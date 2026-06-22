@@ -1,25 +1,22 @@
 "use client";
 
-import { parseAsInteger, useQueryState, useQueryStates } from "nuqs";
+import { parseAsArrayOf, parseAsInteger, parseAsString, useQueryState, useQueryStates } from "nuqs";
 
 import { CarsGridView, useCarsQuery } from "@/entities/car";
 import type { CarListResponse } from "@/entities/car";
 import { useDebounce } from "@/shared/hooks";
 
-import { mockedCars } from "../mocks/car-mocks";
-
 interface CarsForSaleProps {
   initialData?: CarListResponse;
 }
 
-// TODO
 export const CarsForSale = ({ initialData }: CarsForSaleProps) => {
   const [priceMin] = useQueryState("price_min");
   const [priceMax] = useQueryState("price_max");
   const [yearMin] = useQueryState("year_min");
   const [yearMax] = useQueryState("year_max");
-  const [colors] = useQueryStates({ colors: parseAsInteger });
-  const [categories] = useQueryStates({ categories: parseAsInteger });
+  const [colors] = useQueryStates({ colors: parseAsArrayOf(parseAsString) });
+  const [categories] = useQueryStates({ categories: parseAsArrayOf(parseAsInteger) });
   const [q] = useQueryState("q");
   const [pageSize, setPageSize] = useQueryState("page_size");
   const [page, setPage] = useQueryState("page");
@@ -56,15 +53,9 @@ export const CarsForSale = ({ initialData }: CarsForSaleProps) => {
         ? undefined
         : parseInt(debouncedYearMax)
       : undefined,
-    colors: debouncedColors?.colors
-      ? Array.isArray(debouncedColors.colors)
-        ? debouncedColors.colors.map(String)
-        : [String(debouncedColors.colors)]
-      : undefined,
-    categoryIds: debouncedCategories?.categories
-      ? Array.isArray(debouncedCategories.categories)
-        ? debouncedCategories.categories
-        : [debouncedCategories.categories]
+    colors: debouncedColors?.colors?.length ? debouncedColors.colors : undefined,
+    categoryIds: debouncedCategories?.categories?.length
+      ? debouncedCategories.categories
       : undefined,
     q: debouncedQ || undefined,
     page: debouncedPage ? (isNaN(parseInt(debouncedPage)) ? 1 : parseInt(debouncedPage)) : 1,
@@ -77,12 +68,10 @@ export const CarsForSale = ({ initialData }: CarsForSaleProps) => {
     initialData,
   );
 
-  const cars = data?.items?.length ? data.items : mockedCars;
-
   return (
     <div className="container pt-[130px]">
       <CarsGridView
-        items={cars}
+        items={data?.items ?? []}
         pagination={{
           pageSize: debouncedPageSize
             ? isNaN(parseInt(debouncedPageSize))

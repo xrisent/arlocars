@@ -5,14 +5,17 @@ import { App, Button, Input, Popconfirm, Space, Table, Typography } from "antd";
 import type { TablePaginationConfig } from "antd";
 import { useCallback, useState } from "react";
 
-import { useCategoriesQuery } from "@/entities/category";
-import type { CategoryDto } from "@/entities/category/model/interfaces";
+import { useCategoriesQuery, type CategoryDto, type CategoryListResponse } from "@/entities/category";
 import { useDeleteCategory } from "@/features/category/model";
 import { CategoryEditorModal } from "@/features/category/ui";
 
 const { Title } = Typography;
 
-export function AdminCategoriesPage() {
+interface AdminCategoriesPageProps {
+  initialData?: CategoryListResponse;
+}
+
+export function AdminCategoriesPage({ initialData }: AdminCategoriesPageProps) {
   const { message } = App.useApp();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -20,7 +23,10 @@ export function AdminCategoriesPage() {
   const [editorOpen, setEditorOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<CategoryDto | null>(null);
 
-  const { data, isLoading } = useCategoriesQuery({ page, pageSize: 10, search: search || undefined });
+  const { data, isLoading } = useCategoriesQuery(
+    { page, pageSize: 10, search: search || undefined },
+    initialData,
+  );
   const deleteMutation = useDeleteCategory();
 
   const handleDelete = useCallback(

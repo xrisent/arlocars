@@ -1,3 +1,4 @@
+import { getCarById } from "@/entities/car/api/requests";
 import { AdminCarDetailPage } from "@/views/admin";
 
 interface AdminCarDetailRouteProps {
@@ -12,5 +13,11 @@ export default async function AdminCarDetailRoute({ params }: AdminCarDetailRout
     return <p>Car not found</p>;
   }
 
-  return <AdminCarDetailPage carId={id} />;
+  const initialCar = await getCarById(id);
+
+  if (!initialCar) {
+    return <p>Car not found</p>;
+  }
+
+  return <AdminCarDetailPage carId={id} initialCar={initialCar} />;
 }

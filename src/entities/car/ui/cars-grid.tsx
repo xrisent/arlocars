@@ -29,6 +29,7 @@ export const CarsGridView = ({ items, loading, className, pagination }: CarsGrid
         xl: 6,
         xxl: 6,
       }}
+      gutter={[16, 16]}
     >
       {items.map((car) => (
         <CarCardView car={car} key={car.id} />

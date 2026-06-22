@@ -19,9 +19,7 @@ export function useCreateCategory() {
   return useMutation({
     mutationFn: (data: CategoryCreateInput) => createCategoryRequest(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.CATEGORIES.BASE, QUERY_KEYS.CATEGORIES.LIST],
-      });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CATEGORIES.BASE });
     },
   });
 }
@@ -32,9 +30,7 @@ export function useUpdateCategory(id: number) {
   return useMutation({
     mutationFn: (data: CategoryUpdateInput) => updateCategoryRequest(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.CATEGORIES.BASE, QUERY_KEYS.CATEGORIES.LIST],
-      });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CATEGORIES.BASE });
     },
   });
 }
@@ -45,9 +41,7 @@ export function useDeleteCategory() {
   return useMutation({
     mutationFn: (id: number) => deleteCategoryRequest(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.CATEGORIES.BASE, QUERY_KEYS.CATEGORIES.LIST],
-      });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.CATEGORIES.BASE });
     },
   });
 }

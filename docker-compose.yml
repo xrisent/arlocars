@@ -1,0 +1,51 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost}
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: file:/data/app.db
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    volumes:
+      - db_data:/data
+      - uploads_data:/app/public/uploads
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
+
+  nginx:
+    build:
+      context: ./docker/nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      APP_HOST: app
+      APP_PORT: 3000
+      LETSENCRYPT_DOMAIN: ${LETSENCRYPT_DOMAIN:-}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
+      CERTBOT_STAGING: ${CERTBOT_STAGING:-0}
+    volumes:
+      - certbot_www:/var/www/certbot
+      - certbot_conf:/etc/letsencrypt
+    depends_on:
+      app:
+        condition: service_healthy
+
+volumes:
+  db_data:
+  uploads_data:
+  certbot_www:
+  certbot_conf:

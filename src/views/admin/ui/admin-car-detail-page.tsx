@@ -5,6 +5,7 @@ import { App, Button, Descriptions, Image, Popconfirm, Space, Spin, Typography }
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import type { CarDto } from "@/entities/car";
 import { useCarQuery } from "@/entities/car";
 import { useDeleteCar } from "@/features/car/model";
 
@@ -12,12 +13,13 @@ const { Title, Text } = Typography;
 
 interface AdminCarDetailPageProps {
   carId: number;
+  initialCar?: CarDto;
 }
 
-export function AdminCarDetailPage({ carId }: AdminCarDetailPageProps) {
+export function AdminCarDetailPage({ carId, initialCar }: AdminCarDetailPageProps) {
   const router = useRouter();
   const { message } = App.useApp();
-  const { data: car, isLoading } = useCarQuery(carId);
+  const { data: car, isLoading } = useCarQuery(carId, initialCar);
   const deleteMutation = useDeleteCar();
 
   const handleDelete = async () => {
