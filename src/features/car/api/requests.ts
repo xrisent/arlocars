@@ -98,6 +98,7 @@ export async function updateCar(id: number, data: ParsedCarUpdate): Promise<CarD
   const row = await prisma.car.update({
     where: { id },
     data: {
+      ...(data.name != null ? { name: data.name } : {}),
       ...(data.price != null ? { price: data.price } : {}),
       ...(data.year != null ? { year: data.year } : {}),
       ...(data.color != null ? { color: data.color } : {}),

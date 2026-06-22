@@ -7,24 +7,31 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import type { CarDto } from "@/entities/car";
+import type { CarDto, CarListResponse } from "@/entities/car";
 import { useCarsQuery } from "@/entities/car";
 import { useDeleteCar } from "@/features/car/model";
 
 const { Title } = Typography;
 
-export function AdminCarsPage() {
+interface AdminCarsPageProps {
+  initialData?: CarListResponse;
+}
+
+export function AdminCarsPage({ initialData }: AdminCarsPageProps) {
   const router = useRouter();
   const { message } = App.useApp();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-  const { data, isLoading } = useCarsQuery({
-    page,
-    page_size: 10,
-    q: search || undefined,
-  });
+  const { data, isLoading } = useCarsQuery(
+    {
+      page,
+      page_size: 10,
+      q: search || undefined,
+    },
+    initialData,
+  );
 
   const deleteMutation = useDeleteCar();
 

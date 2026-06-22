@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import type { CarListResponse } from "@/entities/car";
 import { carRequestToSearchParams, listCars } from "@/entities/car/api/requests";
-import { buildPageMetadata } from "@/shared/seo";
+import { breadcrumbSchema, buildPageMetadata, JsonLd } from "@/shared/seo";
 import { CarsPage } from "@/views/cars";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -26,5 +26,12 @@ export default async function Cars() {
     initialData = undefined;
   }
 
-  return <CarsPage initialData={initialData} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Cars For Sale", path: "/cars" }])}
+      />
+      <CarsPage initialData={initialData} />
+    </>
+  );
 }

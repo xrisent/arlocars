@@ -56,8 +56,7 @@ function buildWhere(searchParams: URLSearchParams): Prisma.CarWhereInput {
   if (categoryIds.length > 0) parts.push({ categoryId: { in: categoryIds } });
   if (q) {
     parts.push({
-      description: { contains: q },
-      name: { contains: q },
+      OR: [{ name: { contains: q } }, { description: { contains: q } }],
     });
   }
 

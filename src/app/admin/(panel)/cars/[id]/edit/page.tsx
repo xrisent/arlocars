@@ -1,3 +1,4 @@
+import { getCarById } from "@/entities/car/api/requests";
 import { AdminCarFormPage } from "@/views/admin";
 
 interface AdminCarEditRouteProps {
@@ -12,5 +13,11 @@ export default async function AdminCarEditRoute({ params }: AdminCarEditRoutePro
     return <p>Car not found</p>;
   }
 
-  return <AdminCarFormPage mode="edit" carId={id} />;
+  const initialCar = await getCarById(id);
+
+  if (!initialCar) {
+    return <p>Car not found</p>;
+  }
+
+  return <AdminCarFormPage mode="edit" carId={id} initialCar={initialCar} />;
 }

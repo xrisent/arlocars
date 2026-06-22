@@ -1,7 +1,13 @@
 import type { Prisma } from "@prisma/client";
+import axios from "axios";
 
-import type { CategoryDto, CategoryListResponse } from "@/entities/category/model/interfaces";
+import type {
+  CategoryDto,
+  CategoryListResponse,
+  ICategoryRequest,
+} from "@/entities/category/model/interfaces";
 import { prisma } from "@/shared/api/prisma";
+import { API_ENDPOINTS } from "@/shared/constants";
 import { parsePagination } from "@/shared/lib/list-query";
 
 function buildWhere(search: string | undefined): Prisma.CategoryWhereInput {
@@ -40,4 +46,21 @@ export async function listCategories(searchParams: URLSearchParams): Promise<Cat
 export async function getCategoryById(id: number): Promise<CategoryDto | null> {
   const row = await prisma.category.findUnique({ where: { id } });
   return row ? { id: row.id, name: row.name } : null;
+}
+
+export function categoryRequestToSearchParams(params: ICategoryRequest): URLSearchParams {
+  const searchParams = new URLSearchParams();
+
+  if (params.page != null) searchParams.set("page", String(params.page));
+  if (params.pageSize != null) searchParams.set("pageSize", String(params.pageSize));
+  if (params.search) searchParams.set("search", params.search);
+
+  return searchParams;
+}
+
+export async function fetchCategories(params: ICategoryRequest = {}): Promise<CategoryListResponse> {
+  const response = await axios.get<CategoryListResponse>(API_ENDPOINTS.CATEGORIES.BASE, {
+    params,
+  });
+  return response.data;
 }

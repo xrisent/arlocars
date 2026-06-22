@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { buildPageMetadata } from "@/shared/seo";
+import { buildPageMetadata, JsonLd, localBusinessSchema } from "@/shared/seo";
 import { HomePage } from "@/views/home";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -11,5 +11,10 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function Home() {
-  return <HomePage />;
+  return (
+    <>
+      <JsonLd data={localBusinessSchema()} />
+      <HomePage />
+    </>
+  );
 }

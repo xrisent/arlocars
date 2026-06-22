@@ -10,3 +10,9 @@ export interface CategoryListResponse {
   pageSize: number;
   totalPages: number;
 }
+
+export interface ICategoryRequest {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+}

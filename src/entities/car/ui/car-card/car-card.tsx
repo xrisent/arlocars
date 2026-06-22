@@ -1,4 +1,3 @@
-import { HeartOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,9 +24,6 @@ export const CarCardView = ({ car }: ICarCardViewProps) => {
       <div className="flex flex-col gap-[15px]">
         <div className="flex justify-between items-center">
           <Link href={`/cars/${car.id}`}>{car.name}</Link>
-          <button className="flex justify-center items-center border p-[8px]">
-            <HeartOutlined color="" />
-          </button>
         </div>
         <p>{car.price} AED</p>
       </div>
