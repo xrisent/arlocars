@@ -26,6 +26,7 @@
     color: inherit;
     font-size: 20px;
     font-family: var(--font-heading);
+    transition: all 0.3s;
 
     &:hover {
       color: var(--e-global-color-primary);
