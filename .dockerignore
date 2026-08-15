@@ -11,6 +11,4 @@ docker/data
 *.md
 .DS_Store
 npm-debug.log*
-prisma/dev.db
-prisma/*.db
 public/uploads

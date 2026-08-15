@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -25,10 +25,10 @@ model Category {
 model Car {
   id          Int      @id @default(autoincrement())
   price       Float
-  description String
+  description String   @db.Text
   name        String
   mainPhoto   String
-  photos      String
+  photos      String   @db.Text
   year        Int
   color       String
   categoryId  Int

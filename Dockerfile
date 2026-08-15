@@ -44,8 +44,8 @@ COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
 COPY docker/app-entrypoint.sh /app/docker/app-entrypoint.sh
 
 RUN chmod +x /app/docker/app-entrypoint.sh \
-  && mkdir -p /data /app/public/uploads \
-  && chown -R nextjs:nodejs /app /data
+  && mkdir -p /app/public/uploads \
+  && chown -R nextjs:nodejs /app
 
 USER nextjs
 

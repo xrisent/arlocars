@@ -29,6 +29,7 @@
     "jose": "^6.2.2",
     "jotai": "^2.19.0",
     "libphonenumber-js": "^1.12.41",
+    "mysql2": "^3.23.3",
     "next": "16.2.1",
     "nodemailer": "^8.0.10",
     "nuqs": "^2.8.9",

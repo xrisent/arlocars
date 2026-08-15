@@ -1,4 +1,25 @@
 services:
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-arlocars}
+      MYSQL_USER: ${MYSQL_USER:-arlocars}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-arlocars}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
   app:
     build:
       context: .
@@ -9,14 +30,16 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: file:/data/app.db
+      DATABASE_URL: mysql://${MYSQL_USER:-arlocars}:${MYSQL_PASSWORD:-arlocars}@mysql:3306/${MYSQL_DATABASE:-arlocars}
       HOSTNAME: 0.0.0.0
       PORT: 3000
     volumes:
-      - db_data:/data
       - uploads_data:/app/public/uploads
     expose:
       - "3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/api/health"]
       interval: 30s
@@ -45,7 +68,7 @@ services:
         condition: service_healthy
 
 volumes:
-  db_data:
+  mysql_data:
   uploads_data:
   certbot_www:
   certbot_conf:

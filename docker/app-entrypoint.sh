@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-mkdir -p /data /app/public/uploads
+mkdir -p /app/public/uploads
 
 echo "[app] Applying database migrations..."
 ./node_modules/.bin/prisma migrate deploy

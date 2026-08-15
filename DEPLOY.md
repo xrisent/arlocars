@@ -1,6 +1,6 @@
 # Docker deployment
 
-Stack: **Next.js app** + **nginx** (ports **80/443**) + **SQLite** (persistent volume) + **Let's Encrypt**.
+Stack: **Next.js app** + **MySQL** + **nginx** (ports **80/443**) + **Let's Encrypt**.
 
 Accessible on the server by IP on port **80** immediately. HTTPS on port **443** is enabled automatically when the domain DNS points to the server.
 
@@ -14,7 +14,7 @@ Accessible on the server by IP on port **80** immediately. HTTPS on port **443**
 
 ```bash
 cp .env.example .env
-# Edit .env — secrets, ADMIN_*, LETSENCRYPT_*, NEXT_PUBLIC_SITE_URL
+# Edit .env — DATABASE_URL (for Hostinger), secrets, ADMIN_*, LETSENCRYPT_*, NEXT_PUBLIC_SITE_URL
 
 docker compose up -d --build
 ```
@@ -23,6 +23,21 @@ Open in browser:
 
 - `http://<server-ip>` — works right away
 - `https://your-domain` — after DNS propagates and the certificate is issued
+
+## Hostinger (Business plan)
+
+On shared hosting, create a MySQL database in hPanel and set in `.env`:
+
+```env
+DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/DATABASE_NAME"
+```
+
+Then apply migrations before or after first deploy:
+
+```bash
+npx prisma migrate deploy
+npx prisma generate
+```
 
 ## First admin user
 
@@ -40,6 +55,7 @@ Uses `ADMIN_LOGIN` and `ADMIN_PASSWORD` from `.env`.
 
 | Variable | Description |
 |----------|-------------|
+| `DATABASE_URL` | MySQL connection string (`mysql://USER:PASSWORD@HOST:3306/DB`) |
 | `NEXT_PUBLIC_SITE_URL` | Public URL (`https://domain`) — **baked in at build time**, rebuild after change |
 | `JWT_ACCESS_SECRET` / `JWT_REFRESH_SECRET` | Long random strings |
 | `ADMIN_LOGIN` / `ADMIN_PASSWORD` | Initial admin credentials |
@@ -61,7 +77,7 @@ docker compose up -d --build    # rebuild after code changes
 
 | Volume | Contents |
 |--------|----------|
-| `db_data` | SQLite database (`/data/app.db`) |
+| `mysql_data` | MySQL database files |
 | `uploads_data` | Uploaded car images |
 | `certbot_conf` | SSL certificates |
 | `certbot_www` | ACME challenge files |
