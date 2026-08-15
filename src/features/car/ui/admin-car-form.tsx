@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 
 import type { CarDto } from "@/entities/car";
 import { useCategoriesQuery } from "@/entities/category";
+import { getImageUrl } from "@/shared/utils";
 import { useCreateCar, useUpdateCar } from "@/features/car/model/hooks";
 
 interface AdminCarFormValues {
@@ -182,7 +183,7 @@ export function AdminCarForm({ car, mode }: AdminCarFormProps) {
         <div className="mb-4">
           <p className="mb-2 text-sm text-gray-500">Current main photo</p>
           <Image
-            src={car.mainPhoto}
+            src={getImageUrl(car.mainPhoto)}
             alt={car.name}
             width={240}
             height={160}
@@ -219,7 +220,7 @@ export function AdminCarForm({ car, mode }: AdminCarFormProps) {
             {car.photos.map((photo) => (
               <Image
                 key={photo}
-                src={photo}
+                src={getImageUrl(photo)}
                 alt=""
                 width={100}
                 height={70}

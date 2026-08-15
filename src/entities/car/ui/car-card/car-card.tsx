@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CarDto } from "@/entities/car";
+import { getImageUrl } from "@/shared/utils";
 
 import "./car-card.scss";
 
@@ -16,7 +17,7 @@ export const CarCardView = ({ car }: ICarCardViewProps) => {
         <Image
           width={280}
           height={180}
-          src={car.mainPhoto}
+          src={getImageUrl(car.mainPhoto)}
           alt={`${car.name} — ${car.year} used car for sale in Dubai`}
           className="w-full h-full"
         />

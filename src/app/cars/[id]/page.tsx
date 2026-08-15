@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { getCarById } from "@/entities/car/api/requests";
 import { breadcrumbSchema, buildPageMetadata, JsonLd, vehicleSchema } from "@/shared/seo";
+import { getImageUrl } from "@/shared/utils";
 import { CarDetailPage } from "@/views/cars/ui/car-detail-page";
 
 interface PageProps {
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: car.name,
     description: car.description.slice(0, 160),
     path: `/cars/${car.id}`,
-    ogImage: car.mainPhoto,
+    ogImage: getImageUrl(car.mainPhoto),
   });
 }
 

@@ -1,5 +1,7 @@
 import parsePhoneNumberFromString, { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+
 export const cleanPhone = (value: string): string => {
   return value.replace(/[^\d+]/g, "");
 };
@@ -20,4 +22,12 @@ export const formatPhoneNumber = (value: string, country: string): string => {
     return formattedValue.number;
   }
   return cleanPhone(value);
+};
+
+export const getImageUrl = (path: string) => {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+
+  return `${SITE_URL}${path}`;
 };
