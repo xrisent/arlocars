@@ -12,7 +12,7 @@ interface ICarCardViewProps {
 
 export const CarCardView = ({ car }: ICarCardViewProps) => {
   return (
-    <div className="CarCard flex flex-col gap-[15px]">
+    <Link href={`/cars/${car.id}`} className="CarCard flex flex-col gap-[15px]">
       <div className="CarCard__image-wrapper">
         <Image
           width={280}
@@ -24,10 +24,10 @@ export const CarCardView = ({ car }: ICarCardViewProps) => {
       </div>
       <div className="flex flex-col gap-[15px]">
         <div className="flex justify-between items-center">
-          <Link href={`/cars/${car.id}`}>{car.name}</Link>
+          <span>{car.name}</span>
         </div>
         <p>{car.price} AED</p>
       </div>
-    </div>
+    </Link>
   );
 };
