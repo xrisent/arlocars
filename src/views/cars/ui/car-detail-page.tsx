@@ -42,7 +42,7 @@ export function CarDetailPage({ car }: CarDetailPageProps) {
                     src={getImageUrl(photo)}
                     alt=""
                     width={160}
-                    className="rounded object-cover"
+                    className="rounded-lg object-cover"
                   />
                 ))}
               </div>
