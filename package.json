@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma migrate deploy && prisma generate && next build",
-    "start": "next start",
+    "build": "node scripts/fix-prisma-permissions.js && prisma migrate deploy && prisma generate && node scripts/fix-prisma-permissions.js && next build",
+    "start": "node scripts/fix-prisma-permissions.js && next start",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
