@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import axios from "axios";
+import { cache } from "react";
 
 import type { CarDto, CarListResponse, CarRowWithCategory } from "@/entities/car";
 import { ICarRequest } from "@/entities/car";
@@ -92,6 +93,17 @@ export async function listCars(searchParams: URLSearchParams): Promise<CarListRe
   };
 }
 
+/**
+ * Same query as {@link listCars}, keyed by the raw query string instead of a
+ * `URLSearchParams` instance so React's `cache()` can dedupe it — `app/cars/page.tsx`
+ * calls this from both `generateMetadata` and the page body with an
+ * identical query string, so the request-scoped cache turns that into a
+ * single Prisma round trip instead of two.
+ */
+export const listCarsByQueryString = cache((queryString: string): Promise<CarListResponse> =>
+  listCars(new URLSearchParams(queryString)),
+);
+
 export async function getCarById(id: number): Promise<CarDto | null> {
   const row = await prisma.car.findUnique({
     where: { id },
@@ -114,6 +126,15 @@ export function carRequestToSearchParams(params: ICarRequest): URLSearchParams {
   params.categoryIds?.forEach((id) => searchParams.append("categoryIds", String(id)));
 
   return searchParams;
+}
+
+export async function listDistinctColors(): Promise<string[]> {
+  const rows = await prisma.car.findMany({
+    select: { color: true },
+    distinct: ["color"],
+    orderBy: { color: "asc" },
+  });
+  return rows.map((row) => row.color);
 }
 
 export async function listAllCarIds(): Promise<{ id: number; lastModified: Date }[]> {

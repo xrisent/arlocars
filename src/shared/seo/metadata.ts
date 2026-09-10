@@ -55,6 +55,6 @@ export function buildPageMetadata({
       description,
       images: [imageUrl],
     },
-    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
   };
 }

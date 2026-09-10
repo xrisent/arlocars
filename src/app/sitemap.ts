@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { listAllCarIds } from "@/entities/car/api/requests";
+import { listCategories } from "@/entities/category/api/requests";
 import { siteConfig } from "@/shared/config/site";
 
 const staticRoutes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] =
@@ -36,5 +37,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     carEntries = [];
   }
 
-  return [...staticEntries, ...carEntries];
+  // Predefined popular filter combinations: one indexable landing page per
+  // category (e.g. `/cars?categories=3`), so the most useful filtered views
+  // get discovered and indexed directly instead of relying on internal
+  // links alone.
+  let categoryFilterEntries: MetadataRoute.Sitemap = [];
+
+  try {
+    const { items: categories } = await listCategories(new URLSearchParams({ pageSize: "100" }));
+    categoryFilterEntries = categories.map((category) => ({
+      url: `${siteConfig.url}/cars?categories=${category.id}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.6,
+    }));
+  } catch {
+    categoryFilterEntries = [];
+  }
+
+  return [...staticEntries, ...carEntries, ...categoryFilterEntries];
 }

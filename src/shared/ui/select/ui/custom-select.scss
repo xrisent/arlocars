@@ -1,0 +1,18 @@
+.CustomSelect {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  padding: 8px 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  background: transparent;
+  color: var(--color-dark);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-bottom-color: var(--color-gold);
+  }
+}

@@ -2,6 +2,7 @@ export * from "./logo";
 export * from "./button";
 export * from "./input";
 export * from "./phone-input";
+export * from "./select";
 export * from "./textarea";
 export * from "./custom-grid";
 export * from "./preloader";
