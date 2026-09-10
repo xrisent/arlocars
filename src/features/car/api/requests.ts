@@ -40,6 +40,8 @@ export async function createCar(data: ParsedCarCreate): Promise<CarDto> {
     data: {
       name: data.name,
       price: data.price,
+      oldPrice: data.oldPrice,
+      mileage: data.mileage,
       year: data.year,
       color: data.color,
       description: data.description,
@@ -100,6 +102,8 @@ export async function updateCar(id: number, data: ParsedCarUpdate): Promise<CarD
     data: {
       ...(data.name != null ? { name: data.name } : {}),
       ...(data.price != null ? { price: data.price } : {}),
+      ...(data.oldPrice !== undefined ? { oldPrice: data.oldPrice } : {}),
+      ...(data.mileage !== undefined ? { mileage: data.mileage } : {}),
       ...(data.year != null ? { year: data.year } : {}),
       ...(data.color != null ? { color: data.color } : {}),
       ...(data.description != null ? { description: data.description } : {}),

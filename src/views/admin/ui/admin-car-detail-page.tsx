@@ -82,6 +82,12 @@ export function AdminCarDetailPage({ carId, initialCar }: AdminCarDetailPageProp
         <Descriptions bordered column={1} size="small">
           <Descriptions.Item label="ID">{car.id}</Descriptions.Item>
           <Descriptions.Item label="Price">{car.price.toLocaleString()} AED</Descriptions.Item>
+          <Descriptions.Item label="Old price">
+            {car.oldPrice != null ? `${car.oldPrice.toLocaleString()} AED` : "—"}
+          </Descriptions.Item>
+          <Descriptions.Item label="Mileage">
+            {car.mileage != null ? `${car.mileage.toLocaleString()} km` : "—"}
+          </Descriptions.Item>
           <Descriptions.Item label="Year">{car.year}</Descriptions.Item>
           <Descriptions.Item label="Color">{car.color}</Descriptions.Item>
           <Descriptions.Item label="Category">

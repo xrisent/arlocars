@@ -9,12 +9,14 @@ import { useMemo, useState } from "react";
 
 import type { CarDto } from "@/entities/car";
 import { useCategoriesQuery } from "@/entities/category";
-import { getImageUrl } from "@/shared/utils";
 import { useCreateCar, useUpdateCar } from "@/features/car/model/hooks";
+import { getImageUrl } from "@/shared/utils";
 
 interface AdminCarFormValues {
   name: string;
   price: number;
+  oldPrice?: number | null;
+  mileage?: number | null;
   year: number;
   color: string;
   description: string;
@@ -63,6 +65,8 @@ export function AdminCarForm({ car, mode }: AdminCarFormProps) {
     const formData = new FormData();
     formData.set("name", values.name);
     formData.set("price", String(values.price));
+    formData.set("oldPrice", values.oldPrice != null ? String(values.oldPrice) : "");
+    formData.set("mileage", values.mileage != null ? String(values.mileage) : "");
     formData.set("year", String(values.year));
     formData.set("color", values.color);
     formData.set("description", values.description);
@@ -118,6 +122,8 @@ export function AdminCarForm({ car, mode }: AdminCarFormProps) {
           ? {
               name: car.name,
               price: car.price,
+              oldPrice: car.oldPrice,
+              mileage: car.mileage,
               year: car.year,
               color: car.color,
               description: car.description,
@@ -147,6 +153,16 @@ export function AdminCarForm({ car, mode }: AdminCarFormProps) {
           rules={[{ required: true, message: "Year is required" }]}
         >
           <InputNumber className="!w-full" min={1900} max={2100} placeholder="2022" />
+        </Form.Item>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <Form.Item name="oldPrice" label="Old price (AED, optional)">
+          <InputNumber className="!w-full" min={0} placeholder="170000" />
+        </Form.Item>
+
+        <Form.Item name="mileage" label="Mileage (km, optional)">
+          <InputNumber className="!w-full" min={0} placeholder="45000" />
         </Form.Item>
       </div>
 

@@ -26,6 +26,8 @@ export function toCarDto(row: CarRowWithCategory): CarDto {
   return {
     id: row.id,
     price: row.price,
+    oldPrice: row.oldPrice,
+    mileage: row.mileage,
     name: row.name,
     description: row.description,
     mainPhoto: row.mainPhoto,

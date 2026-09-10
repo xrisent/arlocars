@@ -37,6 +37,34 @@
     font-family: var(--font-heading);
   }
 
+  &__price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+
+    p {
+      font-size: 20px !important;
+    }
+  }
+
+  &__old-price {
+    color: var(--color-medium) !important;
+    text-decoration: line-through;
+    font-size: 14px !important;
+  }
+
+  &__year {
+    font-size: 16px !important;
+    color: var(--color-medium) !important;
+  }
+
   button {
     border-color: var(--border-color);
     color: var(--e-global-color-primary);

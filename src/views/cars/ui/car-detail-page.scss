@@ -40,10 +40,22 @@
     margin-bottom: 12px;
   }
 
+  &-priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
   &-price {
     font-size: 24px;
     color: var(--color-gold);
-    margin-bottom: 20px;
+  }
+
+  &-oldPrice {
+    font-size: 18px;
+    color: var(--color-medium);
+    text-decoration: line-through;
   }
 
   &-meta {

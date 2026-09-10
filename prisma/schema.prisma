@@ -25,6 +25,8 @@ model Category {
 model Car {
   id          Int      @id @default(autoincrement())
   price       Float
+  oldPrice    Int?
+  mileage     Int?
   description String   @db.Text
   name        String
   mainPhoto   String

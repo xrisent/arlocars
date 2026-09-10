@@ -1,6 +1,8 @@
 export interface Car {
   id: number;
   price: number;
+  oldPrice?: number | null;
+  mileage?: number | null;
   description: string;
   name: string;
   mainPhoto: string;
@@ -14,6 +16,8 @@ export interface Car {
 export interface CarDto {
   id: number;
   price: number;
+  oldPrice?: number | null;
+  mileage?: number | null;
   description: string;
   name: string;
   mainPhoto: string;
@@ -36,6 +40,8 @@ export interface CarListResponse {
 export interface CarRowWithCategory {
   id: number;
   price: number;
+  oldPrice: number | null;
+  mileage: number | null;
   description: string;
   mainPhoto: string;
   name: string;

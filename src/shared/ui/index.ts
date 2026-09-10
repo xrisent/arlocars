@@ -4,3 +4,4 @@ export * from "./input";
 export * from "./phone-input";
 export * from "./textarea";
 export * from "./custom-grid";
+export * from "./preloader";

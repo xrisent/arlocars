@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `Car` ADD COLUMN `mileage` INTEGER NULL,
+    ADD COLUMN `oldPrice` INTEGER NULL;

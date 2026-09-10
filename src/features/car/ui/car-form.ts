@@ -4,6 +4,8 @@ import { bool, int, num, str } from "@/shared/lib/parser";
 
 export function parseCarCreateForm(form: FormData): ParsedCarCreate {
   const price = num(form.get("price"));
+  const oldPrice = int(form.get("oldPrice"));
+  const mileage = int(form.get("mileage"));
   const year = int(form.get("year"));
   const color = str(form.get("color"))?.trim();
   const description = str(form.get("description"))?.trim();
@@ -32,6 +34,8 @@ export function parseCarCreateForm(form: FormData): ParsedCarCreate {
   return {
     name,
     price,
+    ...(oldPrice != null ? { oldPrice } : {}),
+    ...(mileage != null ? { mileage } : {}),
     year,
     color,
     description,
@@ -43,6 +47,8 @@ export function parseCarCreateForm(form: FormData): ParsedCarCreate {
 
 export function parseCarUpdateForm(form: FormData): ParsedCarUpdate {
   const price = num(form.get("price"));
+  const oldPrice = int(form.get("oldPrice"));
+  const mileage = int(form.get("mileage"));
   const year = int(form.get("year"));
   const colorRaw = str(form.get("color"));
   const descRaw = str(form.get("description"));
@@ -56,6 +62,8 @@ export function parseCarUpdateForm(form: FormData): ParsedCarUpdate {
 
   return {
     ...(price != null ? { price } : {}),
+    ...(form.has("oldPrice") ? { oldPrice: oldPrice ?? null } : {}),
+    ...(form.has("mileage") ? { mileage: mileage ?? null } : {}),
     ...(year != null ? { year } : {}),
     ...(colorRaw !== undefined ? { color: colorRaw.trim() } : {}),
     ...(descRaw !== undefined ? { description: descRaw.trim() } : {}),

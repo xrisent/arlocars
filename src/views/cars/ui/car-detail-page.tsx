@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { CarDto } from "@/entities/car";
+import { formatMileage, formatPrice } from "@/shared/lib/format";
 import { CustomButton } from "@/shared/ui";
 import { getImageUrl } from "@/shared/utils";
 
@@ -13,6 +14,7 @@ interface CarDetailPageProps {
 
 export function CarDetailPage({ car }: CarDetailPageProps) {
   const imageAlt = `${car.name} — ${car.year} used car for sale in Dubai`;
+  const hasOldPrice = car.oldPrice != null && car.oldPrice > car.price;
 
   return (
     <main className="CarDetailPage">
@@ -42,6 +44,7 @@ export function CarDetailPage({ car }: CarDetailPageProps) {
                     src={getImageUrl(photo)}
                     alt=""
                     width={160}
+                    height={80}
                     className="rounded-[8px] object-cover"
                   />
                 ))}
@@ -51,7 +54,14 @@ export function CarDetailPage({ car }: CarDetailPageProps) {
 
           <article className="CarDetailPage-info">
             <h1 className="CarDetailPage-title">{car.name}</h1>
-            <p className="CarDetailPage-price">{car.price.toLocaleString()} AED</p>
+            <div className="CarDetailPage-priceRow">
+              <p className="CarDetailPage-price">{formatPrice(car.price)}</p>
+              {hasOldPrice && (
+                <span className="CarDetailPage-oldPrice">
+                  {formatPrice(car.oldPrice as number)}
+                </span>
+              )}
+            </div>
             <ul className="CarDetailPage-meta">
               <li>
                 <strong>Year:</strong> {car.year}
@@ -62,6 +72,11 @@ export function CarDetailPage({ car }: CarDetailPageProps) {
               <li>
                 <strong>Category:</strong> {car.category.name}
               </li>
+              {car.mileage != null && (
+                <li>
+                  <strong>Mileage:</strong> {formatMileage(car.mileage)}
+                </li>
+              )}
             </ul>
             <div className="CarDetailPage-description">
               <h2>Description</h2>

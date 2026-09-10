@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCarById } from "@/entities/car/api/requests";
+import { formatMileage } from "@/shared/lib/format";
 import { breadcrumbSchema, buildPageMetadata, JsonLd, vehicleSchema } from "@/shared/seo";
 import { getImageUrl } from "@/shared/utils";
 import { CarDetailPage } from "@/views/cars/ui/car-detail-page";
@@ -24,9 +25,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Car Not Found" };
   }
 
+  const summary = [
+    String(car.year),
+    car.mileage != null ? formatMileage(car.mileage) : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const description = summary
+    ? `${summary}. ${car.description}`.slice(0, 160)
+    : car.description.slice(0, 160);
+
   return buildPageMetadata({
     title: car.name,
-    description: car.description.slice(0, 160),
+    description,
     path: `/cars/${car.id}`,
     ogImage: getImageUrl(car.mainPhoto),
   });

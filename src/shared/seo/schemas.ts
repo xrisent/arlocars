@@ -68,6 +68,8 @@ export function vehicleSchema(car: {
   description: string;
   mainPhoto: string;
   price: number;
+  oldPrice?: number | null;
+  mileage?: number | null;
   year: number;
   id: number;
 }) {
@@ -84,6 +86,15 @@ export function vehicleSchema(car: {
     image,
     url,
     vehicleModelDate: String(car.year),
+    ...(car.mileage != null
+      ? {
+          mileageFromOdometer: {
+            "@type": "QuantitativeValue",
+            value: car.mileage,
+            unitCode: "KMT",
+          },
+        }
+      : {}),
     offers: {
       "@type": "Offer",
       price: car.price,
