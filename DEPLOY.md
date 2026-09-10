@@ -1,4 +1,56 @@
-# Docker deployment
+# Deployment
+
+## Hostinger Node.js App hosting (hPanel, no Docker)
+
+This is what's actually running at `linen-moose-272653.hostingersite.com`. Hostinger
+builds the git repo into a new versioned folder on every deploy
+(`hbuilds/versions/<id>/nodejs`) and repoints the `hbuilds/current` symlink at it.
+Because `public/uploads` is gitignored, it does **not** exist in the freshly built
+version — any car photos uploaded while the previous version was live are not
+carried over and become unreachable after the next deploy.
+
+**Fix: point uploads at a path outside `hbuilds` entirely**, via the `UPLOADS_DIR`
+env var (see `.env.example`). Files are written there directly and served through
+the app's own `/uploads/[...path]` route handler — not through Next's `public/`
+static serving — so the location is independent of which build version is
+currently live.
+
+Setup (one time):
+
+```bash
+ssh -p 65002 u939154478@145.79.210.78
+mkdir -p /home/u939154478/domains/linen-moose-272653.hostingersite.com/uploads
+```
+
+Then in hPanel → **Websites → linen-moose-... → Node.js**, add the environment
+variable:
+
+```
+UPLOADS_DIR=/home/u939154478/domains/linen-moose-272653.hostingersite.com/uploads
+```
+
+and restart the app from the same screen. New uploads will land in that
+persistent folder and survive future deploys. (Existing photos already written
+under the old version's `public/uploads` — e.g.
+`hbuilds/current/nodejs/public/uploads/cars/...` — should be copied into the new
+`UPLOADS_DIR` once before restarting, or they'll 404 until re-uploaded.)
+
+### Troubleshooting a 404 / site down
+
+If a page or `/uploads/...` URL 404s, first check whether the Node process is
+actually running — the reverse proxy returns 404s (not 502s) when it can't
+reach the backend:
+
+```bash
+curl -I http://127.0.0.1:3000/   # or whatever port hPanel shows for the app
+ps aux | grep -i "server.js\|next-server"
+```
+
+If nothing is listening, restart the app from hPanel → Node.js, then check
+`hbuilds/current/nodejs/stderr.log` and `console.log`, plus the latest folder
+under `hbuilds/logs/` (`*_deploy.log`), for the crash reason.
+
+## Docker deployment
 
 Stack: **Next.js app** + **MySQL** + **nginx** (ports **80/443**) + **Let's Encrypt**.
 

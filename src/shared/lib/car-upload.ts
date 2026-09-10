@@ -3,14 +3,14 @@ import { mkdir, readdir, rm, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { HttpError } from "@/shared/lib/http";
-import { absPublicFilePath } from "@/shared/lib/public-path";
+import { absUploadFilePath } from "@/shared/lib/public-path";
 
 function uniqueId(): string {
   return randomUUID().slice(0, 8);
 }
 
 function uploadDirAbs(uploadId: string): string {
-  return absPublicFilePath(`uploads/cars/${uploadId}`);
+  return absUploadFilePath(`cars/${uploadId}`);
 }
 
 async function removeFilesMatching(dirAbs: string, predicate: (name: string) => boolean): Promise<void> {
@@ -75,7 +75,7 @@ export async function saveNewCarImages(params: {
   }
 
   const baseRel = `/uploads/cars/${params.uploadId}`;
-  const dirAbs = absPublicFilePath(`${baseRel.slice(1)}`);
+  const dirAbs = absUploadFilePath(`${baseRel.slice(1)}`);
   await mkdir(dirAbs, { recursive: true });
 
   const mainExt = extFromFile(params.mainPhoto);
@@ -104,7 +104,7 @@ export async function appendCarPhotos(params: {
   photos: File[];
 }): Promise<string[]> {
   const baseRel = `/uploads/cars/${params.uploadId}`;
-  const dirAbs = absPublicFilePath(`${baseRel.slice(1)}`);
+  const dirAbs = absUploadFilePath(`${baseRel.slice(1)}`);
   await mkdir(dirAbs, { recursive: true });
 
   const out: string[] = [];
@@ -123,7 +123,7 @@ export async function appendCarPhotos(params: {
 export async function replaceMainPhoto(params: { uploadId: string; mainPhoto: File }): Promise<string> {
   assertImage(params.mainPhoto);
   const baseRel = `/uploads/cars/${params.uploadId}`;
-  const dirAbs = absPublicFilePath(`${baseRel.slice(1)}`);
+  const dirAbs = absUploadFilePath(`${baseRel.slice(1)}`);
   await mkdir(dirAbs, { recursive: true });
   await removeMainFiles(dirAbs);
   const ext = extFromFile(params.mainPhoto);
@@ -139,6 +139,6 @@ export function getUploadIdFromMainPhoto(mainPhotoPath: string): string | null {
 }
 
 export async function removeUploadDir(uploadId: string): Promise<void> {
-  const abs = absPublicFilePath(`uploads/cars/${uploadId}`);
+  const abs = absUploadFilePath(`cars/${uploadId}`);
   await rm(abs, { recursive: true, force: true });
 }
