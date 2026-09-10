@@ -8,7 +8,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "15+ years of automotive expertise in Dubai. Arlo Cars — transparency, trust and customer-first used car buying and selling.",
   path: "/about-us",
-  ogImage: "/about-us/about-us.webp",
+  ogImage: "/about-us/about-us.png",
 });
 
 export default function AboutUs() {

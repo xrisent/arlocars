@@ -7,7 +7,7 @@ export const AboutUsSection = () => {
     <section className="AboutUsSection">
       <div className="container flex items-center justify-between pb-[60px] pt-[100px]">
         <Image
-          src="/about-us.webp"
+          src="/about-us.png"
           width={746}
           height={420}
           alt="Arlo Cars — trusted used car dealer in Dubai"

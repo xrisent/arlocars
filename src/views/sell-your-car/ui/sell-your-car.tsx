@@ -17,7 +17,7 @@ export const SellYourCarPage = () => {
         <div className="container SellYourCarPage-whyGrid">
           <div className="SellYourCarPage-whyImage">
             <Image
-              src="/sell-your-car/why-choose-image.png"
+              src="/sell-your-car/why-choose-us.png"
               alt="Why choose Arlo Cars for selling your car in Dubai"
               width={770}
               height={700}

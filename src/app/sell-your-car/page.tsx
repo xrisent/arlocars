@@ -9,7 +9,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Sell your car fast in Dubai — instant valuation, hassle-free inspection and same-day secure payment with Arlo Cars.",
   path: "/sell-your-car",
-  ogImage: "/sell-your-car/why-choose-image.png",
+  ogImage: "/sell-your-car/why-choose-us.png",
 });
 
 export default function SellYourCar() {

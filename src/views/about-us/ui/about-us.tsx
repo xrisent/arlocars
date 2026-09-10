@@ -13,7 +13,7 @@ export const AboutUsPage = () => {
         <div className="container">
           <Image
             className="AboutUsPage-img"
-            src="/about-us/about-us.webp"
+            src="/about-us/about-us.png"
             alt="ArloCars team — automotive experts in Dubai"
             width={455}
             height={735}
