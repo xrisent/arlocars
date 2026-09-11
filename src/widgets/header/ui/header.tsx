@@ -107,7 +107,12 @@ export const Header = () => {
           </div>
           <div className="drawer-links">
             {links.map((item) => (
-              <Link key={item.title} className="drawer-link" href={item.path} onClick={closeDrawer}>
+              <Link
+                key={item.title}
+                className={`drawer-link ${pathname === item.path ? "active" : ""}`}
+                href={item.path}
+                onClick={closeDrawer}
+              >
                 {item.title}
               </Link>
             ))}

@@ -107,6 +107,10 @@
     color: var(--color-gold);
     padding-left: 8px;
   }
+
+  &.active {
+    color: var(--color-gold);
+  }
 }
 
 .drawer-btn {
