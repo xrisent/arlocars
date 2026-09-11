@@ -6,19 +6,19 @@ import "./hero.scss";
 const slides = [
   {
     id: 1,
-    image: "/hero-banner-1.jpg",
+    image: "/IMG_1062.PNG",
     title: "Driven by Excellence, <br /> Defined by Trust",
     alt: "Arlo Cars showroom — driven by excellence in Dubai",
   },
   {
     id: 2,
-    image: "/hero-banner-1.jpg",
+    image: "/IMG_1062.PNG",
     title: "Innovation Meets <br /> Reliability",
     alt: "Premium used cars for sale at Arlo Cars Dubai",
   },
   {
     id: 3,
-    image: "/hero-banner-1.jpg",
+    image: "/IMG_1062.PNG",
     title: "Your Success <br /> Our Priority",
     alt: "Trusted automotive services by Arlo Cars",
   },

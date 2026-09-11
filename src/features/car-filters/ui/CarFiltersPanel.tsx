@@ -1,13 +1,12 @@
 "use client";
 
-import { SearchOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 import type { CategoryDto } from "@/entities/category";
 import { EMPTY_CAR_FILTERS } from "@/features/car-filters/model/types";
 import { useCarFilters } from "@/features/car-filters/model/useCarFilters";
 import { useDebounce } from "@/shared/hooks";
-import { CustomButton, CustomSelect } from "@/shared/ui";
+import { CustomSelect } from "@/shared/ui";
 
 const DEBOUNCE_MS = 400;
 
@@ -121,10 +120,6 @@ export const CarFiltersPanel = ({ categories, colors }: CarFiltersPanelProps) =>
             onChange={(event) => setDraft((current) => ({ ...current, q: event.target.value }))}
             className="w-full flex-1 border border-[var(--border-color)] px-5 py-3 text-base text-[var(--color-dark)] placeholder:text-[var(--color-medium)] focus:border-[var(--color-gold)] focus:outline-none"
           />
-
-          <CustomButton htmlType="submit" icon={<SearchOutlined />} className="shrink-0">
-            Search
-          </CustomButton>
 
           <button
             type="button"
