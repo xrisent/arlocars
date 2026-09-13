@@ -147,14 +147,13 @@ export async function listAllCarIds(): Promise<{ id: number; lastModified: Date 
 }
 
 export const fetchCars = (params: ICarRequest) => {
-  const { page_size, categoryIds, ...rest } = params;
-
+  // Pass a real `URLSearchParams` (built the same way as the SSR path) so
+  // axios serializes `categoryIds`/`colors` as repeated `key=value` pairs.
+  // Handing axios a plain array instead produces `categoryIds[]=1` by
+  // default, which `buildWhere`'s `searchParams.getAll("categoryIds")`
+  // never matches — the filter is silently dropped server-side.
   return axios.get(API_ENDPOINTS.CARS.BASE, {
-    params: {
-      ...rest,
-      pageSize: page_size,
-      categoryIds,
-    },
+    params: carRequestToSearchParams(params),
   });
 };
 
