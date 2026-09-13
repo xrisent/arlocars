@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { CarDto } from "@/entities/car";
 import { formatMileage, formatPrice } from "@/shared/lib/format";
 import { CustomButton } from "@/shared/ui";
-import { getImageUrl } from "@/shared/utils";
 
+import { CarGallery } from "./car-gallery";
 import "./car-detail-page.scss";
 
 interface CarDetailPageProps {
@@ -27,29 +26,7 @@ export function CarDetailPage({ car }: CarDetailPageProps) {
 
         <div className="CarDetailPage-grid">
           <div className="CarDetailPage-gallery">
-            <Image
-              src={getImageUrl(car.mainPhoto)}
-              alt={imageAlt}
-              width={1080}
-              height={720}
-              priority
-              sizes="(max-width: 900px) 100vw, 55vw"
-              className="CarDetailPage-mainImage"
-            />
-            {car.photos.length > 0 && (
-              <div className="flex flex-wrap gap-3">
-                {car.photos.map((photo) => (
-                  <Image
-                    key={getImageUrl(photo)}
-                    src={getImageUrl(photo)}
-                    alt=""
-                    width={160}
-                    height={80}
-                    className="rounded-[8px] object-cover"
-                  />
-                ))}
-              </div>
-            )}
+            <CarGallery mainPhoto={car.mainPhoto} photos={car.photos} alt={imageAlt} />
           </div>
 
           <article className="CarDetailPage-info">

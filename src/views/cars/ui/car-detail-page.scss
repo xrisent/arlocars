@@ -27,12 +27,58 @@
     align-items: start;
   }
 
+  &-mainImageButton {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 2px;
+    }
+  }
+
   &-mainImage {
     width: 100%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
     margin-bottom: 15px;
+  }
+
+  &-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &-thumbButton {
+    display: block;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 2px;
+    }
+  }
+
+  &-thumbImage {
+    display: block;
+    width: 160px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
   }
 
   &-title {
