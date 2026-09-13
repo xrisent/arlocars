@@ -4,9 +4,9 @@ import { buildPageMetadata, JsonLd, localBusinessSchema } from "@/shared/seo";
 import { HomePage } from "@/views/home";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Used Cars in Dubai",
+  title: "ARLO CARS – Defined by Excellence, Driven by Trust",
   description:
-    "Buy and sell used cars in Dubai with Arlo Cars. Verified vehicles, flexible finance, registration renewal and full automotive services.",
+    "Buy and sell cars in Dubai with Arlo Cars. Verified vehicles, flexible finance, registration renewal and full automotive services.",
   path: "/",
 });
 
