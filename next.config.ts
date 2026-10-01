@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  outputFileTracingIncludes: {
+    "/**": ["./node_modules/.prisma/client/*.wasm", "./node_modules/.prisma/client/*.mjs"],
+  },
+
   experimental: {
     cpus: 2,
     webpackBuildWorker: false,
