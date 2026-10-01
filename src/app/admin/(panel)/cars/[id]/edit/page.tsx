@@ -1,4 +1,4 @@
-import { getCarById } from "@/entities/car/api/requests";
+import { getCarById } from "@/entities/car/api/server";
 import { AdminCarFormPage } from "@/views/admin";
 
 interface AdminCarEditRouteProps {

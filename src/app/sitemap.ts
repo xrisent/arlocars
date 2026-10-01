@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 
-import { listAllCarIds } from "@/entities/car/api/requests";
-import { listCategories } from "@/entities/category/api/requests";
+import { listAllCarIds } from "@/entities/car/api/server";
+import { listCategories } from "@/entities/category/api/server";
 import { siteConfig } from "@/shared/config/site";
+
+export const dynamic = "force-dynamic";
 
 const staticRoutes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] =
   [

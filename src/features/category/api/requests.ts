@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-import { getCategoryById } from "@/entities/category";
+import { getCategoryById } from "@/entities/category/api/server";
 import type { CategoryDto } from "@/entities/category/model/interfaces";
 import { prisma } from "@/shared/api/prisma";
 import { HttpError } from "@/shared/lib/http";

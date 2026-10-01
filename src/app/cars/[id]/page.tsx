@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCarById } from "@/entities/car/api/requests";
+import { getCarById } from "@/entities/car/api/server";
 import { formatMileage } from "@/shared/lib/format";
 import { breadcrumbSchema, buildPageMetadata, JsonLd, vehicleSchema } from "@/shared/seo";
 import { getImageUrl } from "@/shared/utils";

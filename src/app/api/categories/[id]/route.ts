@@ -1,4 +1,4 @@
-import { getCategoryById } from "@/entities/category";
+import { getCategoryById } from "@/entities/category/api/server";
 import { deleteCategory, parseCategoryJsonName, updateCategory } from "@/features/category";
 import { requireAdmin } from "@/shared/lib/auth-request";
 import { handleApiError, HttpError, jsonOk } from "@/shared/lib/http";

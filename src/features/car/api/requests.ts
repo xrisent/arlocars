@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-import { getCarById, toCarDto } from "@/entities/car";
+import { getCarById, toCarDto } from "@/entities/car/api/server";
 import type { CarDto } from "@/entities/car";
 import type { ParsedCarCreate, ParsedCarUpdate } from "@/features/car/model/interfaces";
 import { prisma } from "@/shared/api/prisma";

@@ -1,4 +1,4 @@
-import { getCarById } from "@/entities/car";
+import { getCarById } from "@/entities/car/api/server";
 import { deleteCar, parseCarUpdateForm, updateCar } from "@/features/car";
 import { requireAdmin } from "@/shared/lib/auth-request";
 import { handleApiError, HttpError, jsonOk } from "@/shared/lib/http";

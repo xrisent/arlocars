@@ -1,5 +1,6 @@
 import type { CarListResponse } from "@/entities/car";
-import { carRequestToSearchParams, listCars } from "@/entities/car/api/requests";
+import { carRequestToSearchParams } from "@/entities/car/api/requests";
+import { listCars } from "@/entities/car/api/server";
 import { AdminCarsPage } from "@/views/admin";
 
 export default async function AdminCarsRoute() {

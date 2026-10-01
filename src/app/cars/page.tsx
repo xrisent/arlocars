@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 
 import type { CarListResponse } from "@/entities/car";
-import {
-  carRequestToSearchParams,
-  listCarsByQueryString,
-  listDistinctColors,
-} from "@/entities/car/api/requests";
-import { getCategoryById, listCategories } from "@/entities/category/api/requests";
+import { carRequestToSearchParams } from "@/entities/car/api/requests";
+import { listCarsByQueryString, listDistinctColors } from "@/entities/car/api/server";
+import { getCategoryById, listCategories } from "@/entities/category/api/server";
 import {
   buildCarsCanonicalPath,
   buildCarsSeoContent,

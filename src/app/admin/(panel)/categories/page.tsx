@@ -1,5 +1,6 @@
 import type { CategoryListResponse } from "@/entities/category";
-import { categoryRequestToSearchParams, listCategories } from "@/entities/category/api/requests";
+import { categoryRequestToSearchParams } from "@/entities/category/api/requests";
+import { listCategories } from "@/entities/category/api/server";
 import { AdminCategoriesPage } from "@/views/admin";
 
 export default async function AdminCategoriesRoute() {
