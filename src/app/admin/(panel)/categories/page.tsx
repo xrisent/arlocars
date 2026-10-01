@@ -3,6 +3,8 @@ import { categoryRequestToSearchParams } from "@/entities/category/api/requests"
 import { listCategories } from "@/entities/category/api/server";
 import { AdminCategoriesPage } from "@/views/admin";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminCategoriesRoute() {
   let initialData: CategoryListResponse | undefined;
 

@@ -3,6 +3,8 @@ import { carRequestToSearchParams } from "@/entities/car/api/requests";
 import { listCars } from "@/entities/car/api/server";
 import { AdminCarsPage } from "@/views/admin";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminCarsRoute() {
   let initialData: CarListResponse | undefined;
 
